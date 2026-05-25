@@ -10,6 +10,7 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
+  const isSolid = isScrolled || pathname !== '/';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,7 +37,7 @@ export function Navbar() {
     <>
       <nav
         className={`fixed top-0 w-full z-50 transition-all duration-500 ${
-          isScrolled
+          isSolid
             ? 'bg-white/90 backdrop-blur-md shadow-sm border-b border-gray-100'
             : 'bg-transparent'
         }`}
@@ -48,9 +49,9 @@ export function Navbar() {
               animate={{ opacity: 1 }}
               className="flex items-center gap-2 text-xl md:text-2xl font-bold tracking-tight"
             >
-              <Cpu size={22} className={isScrolled ? 'text-black' : 'text-white'} />
-              <span className={isScrolled ? 'text-black' : 'text-white'}>
-                Central <span className={isScrolled ? 'text-blue-600' : 'text-blue-300'}>IT</span>
+              <Cpu size={22} className={isSolid ? 'text-black' : 'text-white'} />
+              <span className={isSolid ? 'text-black' : 'text-white'}>
+                Central <span className={isSolid ? 'text-blue-600' : 'text-blue-300'}>IT</span>
               </span>
             </motion.div>
           </Link>
@@ -68,10 +69,10 @@ export function Navbar() {
                   href={link.href}
                   className={`text-sm font-medium transition-colors duration-200 ${
                     isActive(link.href)
-                      ? isScrolled
+                      ? isSolid
                         ? 'text-blue-600'
                         : 'text-white'
-                      : isScrolled
+                      : isSolid
                         ? 'text-gray-600 hover:text-blue-600'
                         : 'text-white/80 hover:text-white'
                   }`}
@@ -82,7 +83,7 @@ export function Navbar() {
                   <motion.div
                     layoutId="active-underline"
                     className={`absolute -bottom-1 left-0 right-0 h-0.5 rounded-full ${
-                      isScrolled ? 'bg-blue-600' : 'bg-white'
+                      isSolid ? 'bg-blue-600' : 'bg-white'
                     }`}
                   />
                 )}
@@ -93,7 +94,7 @@ export function Navbar() {
           <div className="flex items-center gap-4 md:gap-6">
             <button
               className={`p-2 rounded-lg transition-colors hidden md:inline-flex ${
-                isScrolled ? 'hover:bg-gray-100 text-gray-700' : 'hover:bg-white/10 text-white'
+                isSolid ? 'hover:bg-gray-100 text-gray-700' : 'hover:bg-white/10 text-white'
               }`}
               aria-label="Rechercher"
             >
@@ -102,7 +103,7 @@ export function Navbar() {
             <Link
               href="/shop"
               className={`p-2 rounded-lg transition-colors ${
-                isScrolled ? 'hover:bg-gray-100 text-gray-700' : 'hover:bg-white/10 text-white'
+                isSolid ? 'hover:bg-gray-100 text-gray-700' : 'hover:bg-white/10 text-white'
               }`}
               aria-label="Catalogue produits"
             >
@@ -112,7 +113,7 @@ export function Navbar() {
             <button
               onClick={() => setIsOpen(!isOpen)}
               className={`md:hidden p-2 rounded-lg transition-colors ${
-                isScrolled ? 'hover:bg-gray-100 text-gray-700' : 'hover:bg-white/10 text-white'
+                isSolid ? 'hover:bg-gray-100 text-gray-700' : 'hover:bg-white/10 text-white'
               }`}
               aria-label="Menu"
             >
