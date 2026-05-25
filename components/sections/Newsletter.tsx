@@ -28,12 +28,12 @@ export function Newsletter() {
           className="max-w-2xl mx-auto text-center"
         >
           <div className="inline-block px-4 py-2 bg-gray-100 rounded-full text-sm font-medium mb-6">
-            Stay Updated
+            Restez Informé(e)
           </div>
 
-          <h2 className="heading-section mb-4">Join Our Exclusive Circle</h2>
+          <h2 className="heading-section mb-4">Rejoignez Notre Cercle Exclusif</h2>
           <p className="text-lg text-gray-600 mb-8">
-            Get early access to new drops, exclusive stories, and member-only perks delivered to your inbox.
+            Bénéficiez d'un accès anticipé aux nouveautés, à des histoires exclusives et à des avantages réservés aux membres directement dans votre boîte de réception.
           </p>
 
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
@@ -41,7 +41,7 @@ export function Newsletter() {
               <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
               <input
                 type="email"
-                placeholder="your@email.com"
+                placeholder="votre@email.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -55,7 +55,7 @@ export function Newsletter() {
               type="submit"
               className="px-8 py-3 bg-black text-white rounded-lg font-semibold hover:bg-gray-900 transition-all duration-300 whitespace-nowrap"
             >
-              {submitted ? 'Welcome!' : 'Subscribe'}
+              {submitted ? 'Bienvenue !' : 'S\'abonner'}
             </motion.button>
           </form>
 
@@ -65,12 +65,12 @@ export function Newsletter() {
               animate={{ opacity: 1, y: 0 }}
               className="text-green-600 text-sm mt-4 font-medium"
             >
-              Thank you! Check your email for exclusive offers.
+              Merci ! Consultez vos e-mails pour profiter d'offres exclusives.
             </motion.p>
           )}
 
           <p className="text-xs text-gray-500 mt-6">
-            No spam. Only curated updates and exclusive insider news. Unsubscribe anytime.
+            Sans spam. Uniquement des actualités sélectionnées et des offres exclusives. Désabonnez-vous à tout moment.
           </p>
         </motion.div>
       </div>

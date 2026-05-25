@@ -20,9 +20,9 @@ export default function ProductPage({ params }: { params: { id: string } }) {
       <div className="min-h-screen bg-white">
         <Navbar />
         <div className="container-premium py-32 text-center">
-          <h1 className="heading-section mb-4">Product not found</h1>
+          <h1 className="heading-section mb-4">Produit non trouvé</h1>
           <Link href="/shop" className="text-blue-600 hover:text-blue-700">
-            Back to shop
+            Retour à la boutique
           </Link>
         </div>
         <Footer />
@@ -101,7 +101,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
                   ))}
                 </div>
                 <span className="text-sm text-gray-600">
-                  {product.rating} ({product.reviews} reviews)
+                  {product.rating} ({product.reviews} avis)
                 </span>
               </div>
 
@@ -111,7 +111,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
 
               {product.specs && (
                 <div className="pt-6 border-t border-gray-100 space-y-3">
-                  <h3 className="font-semibold">Specifications</h3>
+                  <h3 className="font-semibold">Spécifications</h3>
                   {Object.entries(product.specs).map(([key, value]) => (
                     <div key={key} className="flex justify-between text-sm">
                       <span className="text-gray-600">{key}</span>
@@ -144,7 +144,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
                   className="flex-1 px-8 py-3 bg-black text-white rounded-lg font-semibold flex items-center justify-center gap-2 hover:bg-gray-900 transition-all"
                 >
                   <ShoppingBag size={20} />
-                  Add to Cart
+                  Ajouter au Panier
                 </motion.button>
 
                 <motion.button
@@ -165,21 +165,21 @@ export default function ProductPage({ params }: { params: { id: string } }) {
                 className="w-full py-3 border border-gray-200 rounded-lg font-semibold flex items-center justify-center gap-2 hover:bg-gray-50 transition-colors"
               >
                 <Share2 size={18} />
-                Share
+                Partager
               </motion.button>
 
               <div className="pt-6 border-t border-gray-100 space-y-3 text-sm text-gray-600">
                 <div className="flex gap-2">
                   <span>✓</span>
-                  <span>Free shipping on orders over $100</span>
+                  <span>Livraison gratuite pour les commandes de plus de 100 $</span>
                 </div>
                 <div className="flex gap-2">
                   <span>✓</span>
-                  <span>30-day return policy</span>
+                  <span>Politique de retour de 30 jours</span>
                 </div>
                 <div className="flex gap-2">
                   <span>✓</span>
-                  <span>Authenticity guaranteed</span>
+                  <span>Authenticité garantie</span>
                 </div>
               </div>
             </motion.div>
@@ -191,7 +191,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="heading-section mb-12 text-center">Related Products</h2>
+              <h2 className="heading-section mb-12 text-center">Produits Similaires</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
                 {relatedProducts.map((p, idx) => (
                   <ProductCard key={p.id} product={p} index={idx} />

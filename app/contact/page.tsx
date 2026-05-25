@@ -41,19 +41,19 @@ export default function Contact() {
   const contactInfo = [
     {
       icon: Mail,
-      title: 'Email',
-      content: 'hello@nexus.com',
-      link: 'mailto:hello@nexus.com',
+      title: 'E-mail',
+      content: 'hello@g-shop.com',
+      link: 'mailto:hello@g-shop.com',
     },
     {
       icon: Phone,
-      title: 'Phone',
+      title: 'Téléphone',
       content: '+1 (555) 123-4567',
       link: 'tel:+15551234567',
     },
     {
       icon: MapPin,
-      title: 'Location',
+      title: 'Adresse',
       content: '123 Sneaker Avenue, Los Angeles, CA 90001',
       link: '#',
     },
@@ -69,9 +69,9 @@ export default function Contact() {
           animate={{ opacity: 1, y: 0 }}
           className="container-premium text-center mb-16"
         >
-          <h1 className="heading-section mb-4">Get in Touch</h1>
+          <h1 className="heading-section mb-4">Contactez-nous</h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Have a question or feedback? We'd love to hear from you. Our team typically responds within 24 hours.
+            Vous avez une question ou un avis ? Nous aimerions avoir de vos nouvelles. Notre équipe répond généralement sous 24 heures.
           </p>
         </motion.div>
 
@@ -100,13 +100,13 @@ export default function Contact() {
             viewport={{ once: true }}
             className="max-w-2xl mx-auto bg-gradient-subtle rounded-lg p-12 border border-gray-200"
           >
-            <h2 className="text-2xl md:text-3xl font-bold mb-8">Send us a Message</h2>
+            <h2 className="text-2xl md:text-3xl font-bold mb-8">Envoyez-nous un Message</h2>
 
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="firstName" className="block text-sm font-semibold mb-2">
-                    First Name
+                    Prénom
                   </label>
                   <input
                     type="text"
@@ -116,13 +116,13 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent transition-all"
-                    placeholder="John"
+                    placeholder="Jean"
                   />
                 </div>
 
                 <div>
                   <label htmlFor="lastName" className="block text-sm font-semibold mb-2">
-                    Last Name
+                    Nom
                   </label>
                   <input
                     type="text"
@@ -132,14 +132,14 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent transition-all"
-                    placeholder="Doe"
+                    placeholder="Dupont"
                   />
                 </div>
               </div>
 
               <div>
                 <label htmlFor="email" className="block text-sm font-semibold mb-2">
-                  Email Address
+                  Adresse E-mail
                 </label>
                 <input
                   type="email"
@@ -149,13 +149,13 @@ export default function Contact() {
                   onChange={handleChange}
                   required
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent transition-all"
-                  placeholder="john@example.com"
+                  placeholder="jean.dupont@example.com"
                 />
               </div>
 
               <div>
                 <label htmlFor="service" className="block text-sm font-semibold mb-2">
-                  Service Inquiry
+                  Type de Demande
                 </label>
                 <select
                   id="service"
@@ -164,13 +164,13 @@ export default function Contact() {
                   onChange={handleChange}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent transition-all"
                 >
-                  <option value="general">General Inquiry</option>
-                  <option value="returns">Returns & Exchanges</option>
-                  <option value="shipping">Shipping Question</option>
-                  <option value="order">Order Status</option>
-                  <option value="authentication">Authentication</option>
-                  <option value="partnership">Partnership Inquiry</option>
-                  <option value="other">Other</option>
+                  <option value="general">Demande Générale</option>
+                  <option value="returns">Retours & Échanges</option>
+                  <option value="shipping">Question sur la Livraison</option>
+                  <option value="order">Statut de la Commande</option>
+                  <option value="authentication">Authentification</option>
+                  <option value="partnership">Partenariat</option>
+                  <option value="other">Autre</option>
                 </select>
               </div>
 
@@ -186,7 +186,7 @@ export default function Contact() {
                   required
                   rows={6}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent transition-all resize-none"
-                  placeholder="Tell us what's on your mind..."
+                  placeholder="Dites-nous ce que vous avez en tête..."
                 />
               </div>
 
@@ -198,7 +198,7 @@ export default function Contact() {
                 className="w-full px-6 py-3 bg-black text-white rounded-lg font-semibold flex items-center justify-center gap-2 hover:bg-gray-900 disabled:bg-gray-600 transition-all duration-300"
               >
                 <Send size={18} />
-                {submitted ? 'Message Sent!' : 'Send Message'}
+                {submitted ? 'Message envoyé !' : 'Envoyer le Message'}
               </motion.button>
             </form>
 
@@ -208,12 +208,12 @@ export default function Contact() {
                 animate={{ opacity: 1, y: 0 }}
                 className="text-green-600 text-center text-sm font-medium mt-6"
               >
-                Thank you for reaching out! We'll get back to you soon.
+                Merci de nous avoir contactés ! Nous vous répondrons très bientôt.
               </motion.p>
             )}
 
             <p className="text-xs text-gray-600 text-center mt-6">
-              We respect your privacy. Your information will only be used to respond to your inquiry.
+              Nous respectons votre vie privée. Vos informations seront uniquement utilisées pour répondre à votre demande.
             </p>
           </motion.div>
         </div>

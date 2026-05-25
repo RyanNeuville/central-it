@@ -19,16 +19,16 @@ export default function Home() {
       <Hero />
 
       <FeaturedProducts
-        title="New Arrivals"
-        subtitle="Discover the latest additions to our collection"
+        title="Nouveautés"
+        subtitle="Découvrez les derniers ajouts à notre collection"
         products={newArrivals}
       />
 
       <StatsSection />
 
       <FeaturedProducts
-        title="Bestsellers"
-        subtitle="Fan-favorite pieces that define the season"
+        title="Meilleures Ventes"
+        subtitle="Les pièces préférées de nos clients qui définissent la saison"
         products={bestsellers}
       />
 
@@ -40,27 +40,27 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="heading-section mb-4">Why NEXUS?</h2>
+            <h2 className="heading-section mb-4">Pourquoi G-Shop ?</h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              We handpick every item to ensure authenticity, quality, and style.
+              Nous sélectionnons minutieusement chaque article pour garantir son authenticité, sa qualité et son style.
             </p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                title: 'Authenticity Guaranteed',
-                description: 'Every product is verified for authenticity by our expert team.',
+                title: 'Authenticité Garantie',
+                description: 'Chaque produit est vérifié pour son authenticité par notre équipe d\'experts.',
                 icon: '✓',
               },
               {
-                title: 'Curated Selection',
-                description: 'Handpicked items representing the best in streetwear culture.',
+                title: 'Sélection Méticuleuse',
+                description: 'Des articles choisis avec soin représentant le meilleur de la culture streetwear.',
                 icon: '★',
               },
               {
-                title: 'Premium Quality',
-                description: 'Only the finest materials and craftsmanship make the cut.',
+                title: 'Qualité Premium',
+                description: 'Seuls les meilleurs matériaux et un savoir-faire d\'exception sont retenus.',
                 icon: '◆',
               },
             ].map((feature, idx) => (
@@ -89,9 +89,9 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="heading-section mb-4">Loved by Collectors</h2>
+            <h2 className="heading-section mb-4">Apprécié par les Collectionneurs</h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Hear from our community of sneaker enthusiasts and style pioneers.
+              Découvrez les témoignages de notre communauté de passionnés de baskets et de pionniers du style.
             </p>
           </motion.div>
 

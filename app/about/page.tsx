@@ -9,29 +9,29 @@ export default function About() {
   const team = [
     {
       name: 'Sarah Chen',
-      role: 'Founder & Creative Director',
-      bio: 'Visionary sneaker curator with 15+ years in fashion',
+      role: 'Fondatrice & Directrice Artistique',
+      bio: 'Curatrice de baskets visionnaire avec plus de 15 ans d\'expérience dans la mode',
       image: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg',
     },
     {
       name: 'Marcus Williams',
-      role: 'Co-Founder & Operations',
-      bio: 'Sneaker enthusiast ensuring every experience is perfect',
+      role: 'Cofondateur & Opérations',
+      bio: 'Passionné de baskets veillant à ce que chaque expérience soit parfaite',
       image: 'https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg',
     },
     {
       name: 'Elena Rodriguez',
-      role: 'Community Manager',
-      bio: 'Building authentic connections with our NEXUS family',
+      role: 'Gestionnaire de Communauté',
+      bio: 'Créer des liens authentiques avec la famille G-Shop',
       image: 'https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg',
     },
   ];
 
   const stats = [
-    { label: 'Happy Collectors', value: '12K+' },
-    { label: 'Premium Items', value: '500+' },
-    { label: 'Countries', value: '45' },
-    { label: 'Years Experience', value: '15+' },
+    { label: 'Collectionneurs Heureux', value: '12K+' },
+    { label: 'Articles Premium', value: '500+' },
+    { label: 'Pays', value: '45' },
+    { label: 'Années d\'expérience', value: '15+' },
   ];
 
   return (
@@ -43,7 +43,7 @@ export default function About() {
           <div className="absolute inset-0">
             <img
               src="https://images.pexels.com/photos/1926769/pexels-photo-1926769.jpeg"
-              alt="Our story"
+              alt="Notre histoire"
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-black/50" />
@@ -54,9 +54,9 @@ export default function About() {
             animate={{ opacity: 1, y: 0 }}
             className="relative z-10 text-center text-white container-premium"
           >
-            <h1 className="heading-hero mb-4">Our Story</h1>
+            <h1 className="heading-hero mb-4">Notre Histoire</h1>
             <p className="text-xl max-w-2xl mx-auto">
-              NEXUS was born from a passion for authentic sneaker culture and the desire to elevate the entire experience.
+              G-Shop est né d'une passion pour la culture authentique des baskets et du désir d'élever l'ensemble de l'expérience.
             </p>
           </motion.div>
         </div>
@@ -69,9 +69,9 @@ export default function About() {
             className="max-w-3xl mx-auto space-y-8 text-center"
           >
             <div>
-              <h2 className="heading-section mb-4">What Drives Us</h2>
+              <h2 className="heading-section mb-4">Ce qui nous motive</h2>
               <p className="text-lg text-gray-700 leading-relaxed">
-                We believe that sneakers are more than just footwear—they're expressions of individuality, creativity, and connection. Founded in 2010, NEXUS emerged from a simple vision: to create a space where authenticity and innovation meet. Every product we feature is handpicked, verified, and celebrated for its craftsmanship and cultural significance.
+                Nous pensons que les baskets sont plus que de simples chaussures : elles sont l'expression de l'individualité, de la créativité et de la connexion. Fondé en 2010, G-Shop est né d'une vision simple : créer un espace où l'authenticité et l'innovation se rencontrent. Chaque produit que nous présentons est sélectionné à la main, vérifié et célébré pour son savoir-faire et sa signification culturelle.
               </p>
             </div>
 
@@ -80,17 +80,17 @@ export default function About() {
                 {
                   icon: Heart,
                   title: 'Passion',
-                  description: 'Deep love for sneaker culture and streetwear',
+                  description: 'Amour profond pour la culture de la basket et du streetwear',
                 },
                 {
                   icon: Target,
                   title: 'Excellence',
-                  description: 'Unwavering commitment to quality and authenticity',
+                  description: 'Engagement indéfectible envers la qualité et l\'authenticité',
                 },
                 {
                   icon: Users,
-                  title: 'Community',
-                  description: 'Building genuine connections with collectors worldwide',
+                  title: 'Communauté',
+                  description: 'Établir des liens authentiques avec les collectionneurs du monde entier',
                 },
               ].map((value, idx) => (
                 <motion.div
@@ -118,7 +118,7 @@ export default function About() {
               viewport={{ once: true }}
               className="text-center mb-16"
             >
-              <h2 className="heading-section mb-4">By the Numbers</h2>
+              <h2 className="heading-section mb-4">En chiffres</h2>
             </motion.div>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
@@ -146,8 +146,8 @@ export default function About() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="heading-section mb-4">Meet the Team</h2>
-            <p className="text-lg text-gray-600">The people behind NEXUS</p>
+            <h2 className="heading-section mb-4">Rencontrez l'Équipe</h2>
+            <p className="text-lg text-gray-600">Les personnes derrière G-Shop</p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">

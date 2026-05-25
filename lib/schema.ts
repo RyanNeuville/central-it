@@ -1,18 +1,18 @@
 export const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: 'NEXUS',
-  url: 'https://nexus-collective.com',
-  logo: 'https://nexus-collective.com/logo.svg',
+  name: 'G-Shop',
+  url: 'https://g-shop.com',
+  logo: 'https://g-shop.com/logo.svg',
   sameAs: [
-    'https://www.instagram.com/nexus-collective',
-    'https://www.twitter.com/nexus-collective',
-    'https://www.facebook.com/nexus-collective',
+    'https://www.instagram.com/g-shop',
+    'https://www.twitter.com/g-shop',
+    'https://www.facebook.com/g-shop',
   ],
   contactPoint: {
     '@type': 'ContactPoint',
-    contactType: 'Customer Service',
-    email: 'support@nexus-collective.com',
+    contactType: 'Service Client',
+    email: 'support@g-shop.com',
     telephone: '+1-555-123-4567',
   },
 };
@@ -34,7 +34,7 @@ export const productSchema = (product: {
   sku: product.id,
   offers: {
     '@type': 'Offer',
-    url: `https://nexus-collective.com/product/${product.id}`,
+    url: `https://g-shop.com/product/${product.id}`,
     priceCurrency: 'USD',
     price: product.price,
     availability: 'https://schema.org/InStock',

@@ -4,10 +4,10 @@ import { motion } from 'framer-motion';
 
 export function StatsSection() {
   const stats = [
-    { label: 'Products', value: '500+', delay: 0 },
-    { label: 'Countries', value: '45+', delay: 0.1 },
-    { label: 'Collectors', value: '12K+', delay: 0.2 },
-    { label: 'Rating', value: '4.8★', delay: 0.3 },
+    { label: 'Produits', value: '500+', delay: 0 },
+    { label: 'Pays', value: '45+', delay: 0.1 },
+    { label: 'Collectionneurs', value: '12K+', delay: 0.2 },
+    { label: 'Évaluation', value: '4.8★', delay: 0.3 },
   ];
 
   return (

@@ -26,9 +26,9 @@ export default function NotFound() {
             404
           </motion.div>
 
-          <h1 className="heading-section mb-4">Page Not Found</h1>
+          <h1 className="heading-section mb-4">Page Non Trouvée</h1>
           <p className="text-lg text-gray-600 mb-8 max-w-md mx-auto">
-            Oops! We couldn't find the page you're looking for. This sneaker doesn't exist in our collection.
+            Oups ! Nous n'avons pas pu trouver la page que vous recherchez. Ce modèle de baskets n'existe pas dans notre collection.
           </p>
 
           <motion.div
@@ -42,14 +42,14 @@ export default function NotFound() {
                 href="/"
                 className="px-8 py-3 bg-black text-white rounded-lg font-semibold flex items-center gap-2 hover:bg-gray-900 transition-all"
               >
-                Back Home
+                Retour à l'accueil
                 <ArrowRight size={18} />
               </Link>
               <Link
                 href="/shop"
                 className="px-8 py-3 border border-gray-200 rounded-lg font-semibold hover:bg-gray-50 transition-colors"
               >
-                Continue Shopping
+                Continuer vos achats
               </Link>
             </div>
           </motion.div>

@@ -7,21 +7,21 @@ import { motion } from 'framer-motion';
 export function Footer() {
   const footerSections = [
     {
-      title: 'Shop',
+      title: 'Boutique',
       links: [
-        { label: 'New Arrivals', href: '/shop' },
-        { label: 'Bestsellers', href: '/shop' },
+        { label: 'Nouveautés', href: '/shop' },
+        { label: 'Meilleures Ventes', href: '/shop' },
         { label: 'Collections', href: '/shop' },
-        { label: 'Sale', href: '/shop' },
+        { label: 'Soldes', href: '/shop' },
       ],
     },
     {
-      title: 'Company',
+      title: 'Entreprise',
       links: [
-        { label: 'About Us', href: '/about' },
-        { label: 'Our Story', href: '/about' },
-        { label: 'Careers', href: '/' },
-        { label: 'Press', href: '/' },
+        { label: 'À propos', href: '/about' },
+        { label: 'Notre histoire', href: '/about' },
+        { label: 'Carrières', href: '/' },
+        { label: 'Presse', href: '/' },
       ],
     },
     {
@@ -29,8 +29,8 @@ export function Footer() {
       links: [
         { label: 'Contact', href: '/contact' },
         { label: 'FAQ', href: '/support' },
-        { label: 'Shipping', href: '/support' },
-        { label: 'Returns', href: '/support' },
+        { label: 'Livraison', href: '/support' },
+        { label: 'Retours', href: '/support' },
       ],
     },
   ];
@@ -51,9 +51,9 @@ export function Footer() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-lg font-bold mb-6">NEXUS</h3>
+            <h3 className="text-lg font-bold mb-6">G-Shop</h3>
             <p className="text-sm text-gray-600 leading-relaxed">
-              Premium sneakers and streetwear for the discerning collector.
+              Baskets et streetwear haut de gamme pour les collectionneurs exigeants.
             </p>
           </motion.div>
 
@@ -70,7 +70,7 @@ export function Footer() {
                 {section.links.map((link) => (
                   <li key={link.label}>
                     <Link
-                      href={link.href}
+                       href={link.href}
                       className="text-sm text-gray-600 hover:text-black transition-colors"
                     >
                       {link.label}
@@ -91,13 +91,13 @@ export function Footer() {
               className="text-sm text-gray-600"
             >
               <p>
-                © 2025 NEXUS. All rights reserved. |{' '}
+                © 2025 G-Shop. Tous droits réservés. |{' '}
                 <Link href="/" className="hover:text-black transition-colors">
-                  Privacy Policy
+                  Politique de confidentialité
                 </Link>{' '}
                 |{' '}
                 <Link href="/" className="hover:text-black transition-colors">
-                  Terms of Service
+                  Conditions d'utilisation
                 </Link>
               </p>
             </motion.div>

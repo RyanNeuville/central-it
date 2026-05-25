@@ -18,9 +18,9 @@ export function Navbar() {
   }, []);
 
   const navLinks = [
-    { href: '/', label: 'Home' },
-    { href: '/shop', label: 'Shop' },
-    { href: '/about', label: 'About' },
+    { href: '/', label: 'Accueil' },
+    { href: '/shop', label: 'Boutique' },
+    { href: '/about', label: 'À propos' },
     { href: '/support', label: 'Support' },
     { href: '/contact', label: 'Contact' },
   ];
@@ -41,7 +41,7 @@ export function Navbar() {
               animate={{ opacity: 1 }}
               className="text-xl md:text-2xl font-bold tracking-tight"
             >
-              NEXUS
+              G-Shop
             </motion.div>
           </Link>
 

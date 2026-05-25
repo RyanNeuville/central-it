@@ -4,7 +4,7 @@ import { useState, useMemo } from 'react';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { ProductCard } from '@/components/sections/ProductCard';
-import { products, categories } from '@/lib/products';
+import { products, categories, categoryIdMap } from '@/lib/products';
 import { motion } from 'framer-motion';
 import { Filter } from 'lucide-react';
 
@@ -17,7 +17,7 @@ export default function Shop() {
     let result = [...products];
 
     if (selectedCategory !== 'all') {
-      result = result.filter((p) => p.category.toLowerCase().replace(' ', '-') === selectedCategory);
+      result = result.filter((p) => p.category === categoryIdMap[selectedCategory]);
     }
 
     if (sortBy === 'price-low') {
@@ -42,9 +42,9 @@ export default function Shop() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-8"
           >
-            <h1 className="heading-section mb-2">Our Collection</h1>
+            <h1 className="heading-section mb-2">Notre Collection</h1>
             <p className="text-gray-600">
-              {filteredProducts.length} items
+              {filteredProducts.length === 1 ? '1 article' : `${filteredProducts.length} articles`}
             </p>
           </motion.div>
         </div>
@@ -57,7 +57,7 @@ export default function Shop() {
                 className="md:hidden flex items-center gap-2 px-4 py-2 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
               >
                 <Filter size={18} />
-                Filters
+                Filtres
               </button>
 
               <select
@@ -65,10 +65,10 @@ export default function Shop() {
                 onChange={(e) => setSortBy(e.target.value)}
                 className="px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-black text-sm"
               >
-                <option value="newest">Newest</option>
-                <option value="price-low">Price: Low to High</option>
-                <option value="price-high">Price: High to Low</option>
-                <option value="rating">Top Rated</option>
+                <option value="newest">Nouveautés</option>
+                <option value="price-low">Prix : du plus bas au plus haut</option>
+                <option value="price-high">Prix : du plus haut au plus bas</option>
+                <option value="rating">Les mieux notés</option>
               </select>
             </div>
           </div>
@@ -82,7 +82,7 @@ export default function Shop() {
               className={`${mobileFilterOpen ? 'block' : 'hidden'} md:block lg:sticky lg:top-24 h-fit`}
             >
               <div>
-                <h3 className="font-bold mb-4">Categories</h3>
+                <h3 className="font-bold mb-4">Catégories</h3>
                 <div className="space-y-2">
                   {categories.map((cat) => (
                     <button
@@ -104,23 +104,23 @@ export default function Shop() {
               </div>
 
               <div className="mt-8 pt-8 border-t border-gray-100">
-                <h3 className="font-bold mb-4">Price Range</h3>
+                <h3 className="font-bold mb-4">Gamme de Prix</h3>
                 <div className="space-y-2 text-sm text-gray-600">
                   <label className="flex items-center gap-2 cursor-pointer hover:text-black transition-colors">
                     <input type="checkbox" className="rounded" />
-                    <span>Under $100</span>
+                    <span>Moins de 100 $</span>
                   </label>
                   <label className="flex items-center gap-2 cursor-pointer hover:text-black transition-colors">
                     <input type="checkbox" className="rounded" />
-                    <span>$100 - $150</span>
+                    <span>100 $ - 150 $</span>
                   </label>
                   <label className="flex items-center gap-2 cursor-pointer hover:text-black transition-colors">
                     <input type="checkbox" className="rounded" />
-                    <span>$150 - $200</span>
+                    <span>150 $ - 200 $</span>
                   </label>
                   <label className="flex items-center gap-2 cursor-pointer hover:text-black transition-colors">
                     <input type="checkbox" className="rounded" />
-                    <span>Over $200</span>
+                    <span>Plus de 200 $</span>
                   </label>
                 </div>
               </div>
@@ -139,7 +139,7 @@ export default function Shop() {
 
               {filteredProducts.length === 0 && (
                 <div className="col-span-2 py-16 text-center">
-                  <p className="text-gray-500">No products found in this category.</p>
+                  <p className="text-gray-500">Aucun produit trouvé dans cette catégorie.</p>
                 </div>
               )}
             </div>
