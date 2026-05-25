@@ -171,7 +171,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
               <div className="pt-6 border-t border-gray-100 space-y-3 text-sm text-gray-600">
                 <div className="flex gap-2">
                   <span>✓</span>
-                  <span>Livraison gratuite dès 200 € HT d'achat</span>
+                  <span>Livraison gratuite dès 200 € HT d&apos;achat</span>
                 </div>
                 <div className="flex gap-2">
                   <span>✓</span>

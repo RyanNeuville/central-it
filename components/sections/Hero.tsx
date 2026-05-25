@@ -9,11 +9,11 @@ export function Hero() {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
       <div className="absolute inset-0 z-0">
         <img
-          src="https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg"
-          alt="Infrastructure informatique professionnelle"
+          src="https://images.pexels.com/photos/1714208/pexels-photo-1714208.jpeg"
+          alt="Périphériques informatiques haut de gamme et espace de travail"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-black/55" />
+        <div className="absolute inset-0 bg-black/60" />
       </div>
 
       <div className="relative z-10 container-premium text-center text-white">
@@ -29,7 +29,7 @@ export function Hero() {
             transition={{ delay: 0.2, duration: 0.6 }}
             className="inline-block px-4 py-2 bg-white/10 backdrop-blur-md rounded-full text-sm font-medium border border-white/20"
           >
-            <span>Expertise IT Professionnelle</span>
+            <span>Équipements & Périphériques Premium</span>
           </motion.div>
 
           <motion.h1
@@ -38,7 +38,7 @@ export function Hero() {
             transition={{ delay: 0.4, duration: 0.8 }}
             className="heading-hero max-w-4xl mx-auto leading-tight"
           >
-            Le matériel IT qu’il vous faut, livré demain
+            Le meilleur des périphériques et équipements IT
           </motion.h1>
 
           <motion.p
@@ -47,7 +47,7 @@ export function Hero() {
             transition={{ delay: 0.6, duration: 0.8 }}
             className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed"
           >
-            Réseaux, serveurs, stockage, workstations et infrastructure : tout le matériel informatique professionnel pour vos projets, quelle que soit leur échelle.
+            Souris gaming ultra-réactives, claviers mécaniques de précision, casques haute fidélité et tablettes graphiques : le matériel informatique haut de gamme conçu pour libérer votre potentiel.
           </motion.p>
 
           <motion.div

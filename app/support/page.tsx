@@ -101,7 +101,7 @@ export default function Support() {
         >
           <h1 className="heading-section mb-4">Support Technique</h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Central IT s'engage à vous offrir un accompagnement technique de haut niveau, avant et après votre achat. Découvrez nos services et engagements.
+            Central IT s&apos;engage à vous offrir un accompagnement technique de haut niveau, avant et après votre achat. Découvrez nos services et engagements.
           </p>
         </motion.div>
 
@@ -191,7 +191,7 @@ export default function Support() {
             className="text-center"
           >
             <h2 className="heading-section mb-6">Vous avez encore des questions ?</h2>
-            <p className="text-lg text-gray-600 mb-8">Notre équipe d'assistance est prête à vous aider.</p>
+            <p className="text-lg text-gray-600 mb-8">Notre équipe d&apos;assistance est prête à vous aider.</p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
                 href="mailto:support@central-it.com"

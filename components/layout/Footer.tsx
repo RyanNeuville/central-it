@@ -9,10 +9,10 @@ export function Footer() {
     {
       title: 'Catalogue',
       links: [
-        { label: 'Réseau & Switches', href: '/shop' },
-        { label: 'Serveurs', href: '/shop' },
-        { label: 'Stockage & NAS', href: '/shop' },
-        { label: 'Workstations', href: '/shop' },
+        { label: 'Souris Gaming & Pro', href: '/shop' },
+        { label: 'Claviers Mécaniques', href: '/shop' },
+        { label: 'Casques & Écouteurs', href: '/shop' },
+        { label: 'Tablettes & Écrans', href: '/shop' },
       ],
     },
     {
@@ -53,7 +53,7 @@ export function Footer() {
           >
             <h3 className="text-lg font-bold mb-6">Central <span className="text-blue-600">IT</span></h3>
             <p className="text-sm text-gray-600 leading-relaxed">
-              Votre partenaire de confiance pour le matériel informatique professionnel : réseaux, serveurs, stockage et infrastructure IT.
+              Votre boutique de référence pour les équipements informatiques et périphériques de pointe : souris gaming, claviers mécaniques, casques, écouteurs et tablettes.
             </p>
           </motion.div>
 
@@ -97,7 +97,7 @@ export function Footer() {
                 </Link>{' '}
                 |{' '}
                 <Link href="/" className="hover:text-black transition-colors">
-                  Conditions d'utilisation
+                  Conditions d&apos;utilisation
                 </Link>
               </p>
             </motion.div>

@@ -71,7 +71,7 @@ export default function About() {
             <div>
               <h2 className="heading-section mb-4">Ce qui nous motive</h2>
               <p className="text-lg text-gray-700 leading-relaxed">
-                Nous pensons que les professionnels de l'IT méritent un partenaire qui comprend leurs contraintes techniques et opérationnelles. Fondé en 2013, Central IT est né d'une vision simple : offrir aux ingénieurs, développeurs et DSI un accès rapide à du matériel informatique professionnel de qualité, avec un accompagnement technique de haut niveau. Chaque référence est sélectionnée, testée et validée par nos experts.
+                Nous pensons que les professionnels de l&apos;IT méritent un partenaire qui comprend leurs contraintes techniques et opérationnelles. Fondé en 2013, Central IT est né d&apos;une vision simple : offrir aux ingénieurs, développeurs et DSI un accès rapide à du matériel informatique professionnel de qualité, avec un accompagnement technique de haut niveau. Chaque référence est sélectionnée, testée et validée par nos experts.
               </p>
             </div>
 
@@ -146,7 +146,7 @@ export default function About() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="heading-section mb-4">Rencontrez l'Équipe</h2>
+            <h2 className="heading-section mb-4">Rencontrez l&apos;Équipe</h2>
             <p className="text-lg text-gray-600">Les experts derrière Central IT</p>
           </motion.div>
 

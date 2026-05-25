@@ -28,7 +28,7 @@ export default function Home() {
 
       <FeaturedProducts
         title="Meilleures Ventes"
-        subtitle="Les pièces préférées de nos clients qui définissent la saison"
+        subtitle="Les équipements les plus plébiscités par notre communauté technique et créative"
         products={bestsellers}
       />
 
@@ -42,25 +42,25 @@ export default function Home() {
           >
             <h2 className="heading-section mb-4">Pourquoi Central IT ?</h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Nous sélectionnons minutieusement chaque équipement pour garantir sa fiabilité, ses performances et sa pérennité.
+              Nous sélectionnons minutieusement chaque périphérique pour garantir son ergonomie, ses performances et sa durabilité.
             </p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                title: 'Garantie Enterprise',
-                description: 'Chaque équipement est couvert par la garantie constructeur avec options de support avancé.',
+                title: 'Qualité Professionnelle',
+                description: 'Chaque équipement est couvert par une garantie constructeur étendue avec un support technique réactif.',
                 icon: '✓',
               },
               {
-                title: 'Validation Technique',
-                description: 'Des composants testés et validés par nos ingénieurs certifiés pour vos infrastructures.',
+                title: 'Validation par des Experts',
+                description: 'Des souris, claviers et tablettes testés et approuvés au quotidien par nos experts en ergonomie.',
                 icon: '★',
               },
               {
-                title: 'Disponibilité Maximale',
-                description: 'Des stocks garantis sur les références critiques pour des déploiements sans délai.',
+                title: 'Livraison Rapide 24/48h',
+                description: 'Des stocks garantis sur toutes nos gammes pour vous équiper sans délai.',
                 icon: '◆',
               },
             ].map((feature, idx) => (
@@ -89,9 +89,9 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="heading-section mb-4">Approuvé par les Professionnels</h2>
+            <h2 className="heading-section mb-4">Approuvé par la Communauté</h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Découvrez les témoignages de notre communauté de DSI, ingénieurs et développeurs.
+              Découvrez les témoignages de notre communauté de gamers, designers, créateurs et développeurs.
             </p>
           </motion.div>
 
