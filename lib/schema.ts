@@ -1,19 +1,19 @@
 export const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: 'G-Shop',
-  url: 'https://g-shop.com',
-  logo: 'https://g-shop.com/logo.svg',
+  name: 'Central IT',
+  url: 'https://central-it.com',
+  logo: 'https://central-it.com/logo.svg',
   sameAs: [
-    'https://www.instagram.com/g-shop',
-    'https://www.twitter.com/g-shop',
-    'https://www.facebook.com/g-shop',
+    'https://www.instagram.com/central-it',
+    'https://www.twitter.com/central-it',
+    'https://www.facebook.com/central-it',
   ],
   contactPoint: {
     '@type': 'ContactPoint',
     contactType: 'Service Client',
-    email: 'support@g-shop.com',
-    telephone: '+1-555-123-4567',
+    email: 'support@central-it.com',
+    telephone: '+33 1 23 45 67 89',
   },
 };
 
@@ -34,8 +34,8 @@ export const productSchema = (product: {
   sku: product.id,
   offers: {
     '@type': 'Offer',
-    url: `https://g-shop.com/product/${product.id}`,
-    priceCurrency: 'USD',
+    url: `https://central-it.com/product/${product.id}`,
+    priceCurrency: 'EUR',
     price: product.price,
     availability: 'https://schema.org/InStock',
   },
