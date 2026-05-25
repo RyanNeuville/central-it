@@ -9,11 +9,11 @@ export function Hero() {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
       <div className="absolute inset-0 z-0">
         <img
-          src="https://images.pexels.com/photos/1926769/pexels-photo-1926769.jpeg"
-          alt="Premium sneakers"
+          src="https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg"
+          alt="Infrastructure informatique professionnelle"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-black/40" />
+        <div className="absolute inset-0 bg-black/55" />
       </div>
 
       <div className="relative z-10 container-premium text-center text-white">
@@ -29,7 +29,7 @@ export function Hero() {
             transition={{ delay: 0.2, duration: 0.6 }}
             className="inline-block px-4 py-2 bg-white/10 backdrop-blur-md rounded-full text-sm font-medium border border-white/20"
           >
-            <span>Excellence Sélectionnée</span>
+            <span>Expertise IT Professionnelle</span>
           </motion.div>
 
           <motion.h1
@@ -38,7 +38,7 @@ export function Hero() {
             transition={{ delay: 0.4, duration: 0.8 }}
             className="heading-hero max-w-4xl mx-auto leading-tight"
           >
-            Là où l'authenticité rencontre l'innovation
+            Le matériel IT qu’il vous faut, livré demain
           </motion.h1>
 
           <motion.p
@@ -47,7 +47,7 @@ export function Hero() {
             transition={{ delay: 0.6, duration: 0.8 }}
             className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed"
           >
-            Découvrez des baskets de marque sélectionnées et du streetwear exclusif, pensés pour ceux qui apprécient les moindres détails.
+            Réseaux, serveurs, stockage, workstations et infrastructure : tout le matériel informatique professionnel pour vos projets, quelle que soit leur échelle.
           </motion.p>
 
           <motion.div
@@ -60,14 +60,14 @@ export function Hero() {
               href="/shop"
               className="group px-8 py-4 bg-white text-black rounded-lg font-semibold flex items-center gap-2 hover:bg-gray-100 transition-all duration-300 active:scale-95"
             >
-              Explorer la Collection
+              Explorer le Catalogue
               <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </Link>
             <Link
               href="/about"
               className="px-8 py-4 bg-white/10 text-white rounded-lg font-semibold border border-white/30 hover:bg-white/20 transition-all duration-300 backdrop-blur-sm"
             >
-              Notre Histoire
+              Notre Expertise
             </Link>
           </motion.div>
         </motion.div>

@@ -105,7 +105,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
                 </span>
               </div>
 
-              <div className="text-3xl font-bold">${product.price}</div>
+              <div className="text-3xl font-bold">{product.price} € HT</div>
 
               <p className="text-gray-700 leading-relaxed text-lg">{product.description}</p>
 
@@ -171,15 +171,15 @@ export default function ProductPage({ params }: { params: { id: string } }) {
               <div className="pt-6 border-t border-gray-100 space-y-3 text-sm text-gray-600">
                 <div className="flex gap-2">
                   <span>✓</span>
-                  <span>Livraison gratuite pour les commandes de plus de 100 $</span>
+                  <span>Livraison gratuite dès 200 € HT d'achat</span>
                 </div>
                 <div className="flex gap-2">
                   <span>✓</span>
-                  <span>Politique de retour de 30 jours</span>
+                  <span>Assistance technique pro et procédure RMA</span>
                 </div>
                 <div className="flex gap-2">
                   <span>✓</span>
-                  <span>Authenticité garantie</span>
+                  <span>Garantie constructeur & support enterprise</span>
                 </div>
               </div>
             </motion.div>

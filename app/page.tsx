@@ -40,27 +40,27 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="heading-section mb-4">Pourquoi G-Shop ?</h2>
+            <h2 className="heading-section mb-4">Pourquoi Central IT ?</h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Nous sélectionnons minutieusement chaque article pour garantir son authenticité, sa qualité et son style.
+              Nous sélectionnons minutieusement chaque équipement pour garantir sa fiabilité, ses performances et sa pérennité.
             </p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                title: 'Authenticité Garantie',
-                description: 'Chaque produit est vérifié pour son authenticité par notre équipe d\'experts.',
+                title: 'Garantie Enterprise',
+                description: 'Chaque équipement est couvert par la garantie constructeur avec options de support avancé.',
                 icon: '✓',
               },
               {
-                title: 'Sélection Méticuleuse',
-                description: 'Des articles choisis avec soin représentant le meilleur de la culture streetwear.',
+                title: 'Validation Technique',
+                description: 'Des composants testés et validés par nos ingénieurs certifiés pour vos infrastructures.',
                 icon: '★',
               },
               {
-                title: 'Qualité Premium',
-                description: 'Seuls les meilleurs matériaux et un savoir-faire d\'exception sont retenus.',
+                title: 'Disponibilité Maximale',
+                description: 'Des stocks garantis sur les références critiques pour des déploiements sans délai.',
                 icon: '◆',
               },
             ].map((feature, idx) => (
@@ -89,9 +89,9 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="heading-section mb-4">Apprécié par les Collectionneurs</h2>
+            <h2 className="heading-section mb-4">Approuvé par les Professionnels</h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Découvrez les témoignages de notre communauté de passionnés de baskets et de pionniers du style.
+              Découvrez les témoignages de notre communauté de DSI, ingénieurs et développeurs.
             </p>
           </motion.div>
 

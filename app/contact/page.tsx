@@ -42,19 +42,19 @@ export default function Contact() {
     {
       icon: Mail,
       title: 'E-mail',
-      content: 'hello@g-shop.com',
-      link: 'mailto:hello@g-shop.com',
+      content: 'hello@central-it.com',
+      link: 'mailto:hello@central-it.com',
     },
     {
       icon: Phone,
       title: 'Téléphone',
-      content: '+1 (555) 123-4567',
-      link: 'tel:+15551234567',
+      content: '+33 (0)1 23 45 67 89',
+      link: 'tel:+33123456789',
     },
     {
       icon: MapPin,
       title: 'Adresse',
-      content: '123 Sneaker Avenue, Los Angeles, CA 90001',
+      content: '14 Rue de l\'Innovation, 75008 Paris, France',
       link: '#',
     },
   ];
@@ -71,7 +71,7 @@ export default function Contact() {
         >
           <h1 className="heading-section mb-4">Contactez-nous</h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Vous avez une question ou un avis ? Nous aimerions avoir de vos nouvelles. Notre équipe répond généralement sous 24 heures.
+            Besoin d&apos;un devis, d&apos;un conseil technique ou d&apos;un suivi SAV ? Notre équipe d&apos;ingénieurs répond sous 4 heures ouvrables.
           </p>
         </motion.div>
 
@@ -165,11 +165,11 @@ export default function Contact() {
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent transition-all"
                 >
                   <option value="general">Demande Générale</option>
-                  <option value="returns">Retours & Échanges</option>
-                  <option value="shipping">Question sur la Livraison</option>
-                  <option value="order">Statut de la Commande</option>
-                  <option value="authentication">Authentification</option>
-                  <option value="partnership">Partenariat</option>
+                  <option value="devis">Demande de Devis</option>
+                  <option value="support">Support Technique</option>
+                  <option value="order">Statut de Commande</option>
+                  <option value="rma">Retour / RMA</option>
+                  <option value="partnership">Partenariat Revendeur</option>
                   <option value="other">Autre</option>
                 </select>
               </div>

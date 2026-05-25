@@ -108,19 +108,19 @@ export default function Shop() {
                 <div className="space-y-2 text-sm text-gray-600">
                   <label className="flex items-center gap-2 cursor-pointer hover:text-black transition-colors">
                     <input type="checkbox" className="rounded" />
-                    <span>Moins de 100 $</span>
+                    <span>Moins de 200 €</span>
                   </label>
                   <label className="flex items-center gap-2 cursor-pointer hover:text-black transition-colors">
                     <input type="checkbox" className="rounded" />
-                    <span>100 $ - 150 $</span>
+                    <span>200 € - 500 €</span>
                   </label>
                   <label className="flex items-center gap-2 cursor-pointer hover:text-black transition-colors">
                     <input type="checkbox" className="rounded" />
-                    <span>150 $ - 200 $</span>
+                    <span>500 € - 1000 €</span>
                   </label>
                   <label className="flex items-center gap-2 cursor-pointer hover:text-black transition-colors">
                     <input type="checkbox" className="rounded" />
-                    <span>Plus de 200 $</span>
+                    <span>Plus de 1000 €</span>
                   </label>
                 </div>
               </div>

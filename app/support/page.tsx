@@ -13,45 +13,45 @@ export default function Support() {
     {
       icon: Truck,
       title: 'Livraison Rapide & Sécurisée',
-      description: 'Nous livrons dans le monde entier sous 2 à 5 jours ouvrables avec suivi complet et assurance pour toutes les commandes.',
+      description: 'Expédition sous 24h pour tout le matériel en stock. Livraison express disponible avec suivi en temps réel et assurance incluse.',
       details: [
-        'Livraison gratuite à partir de 100 $',
-        'Livraison express disponible',
-        'Suivi en temps réel',
-        'Colis entièrement assurés',
+        'Livraison gratuite dès 200 € HT',
+        'Livraison express J+1 disponible',
+        'Suivi numéro de colis en temps réel',
+        'Matériel emballé et assuré',
       ],
     },
     {
       icon: RotateCcw,
-      title: 'Retours Sans Souci',
-      description: 'Non satisfait ? Retournez votre article sous 30 jours pour un remboursement complet ou un échange.',
+      title: 'Retours & RMA Facilités',
+      description: 'Matériel défectueux ou non conforme ? Nous gérons votre retour sous 30 jours avec remplacement ou remboursement intégral.',
       details: [
-        'Période de retour de 30 jours',
-        'Frais de retour gratuits',
-        'Sans justification requise',
-        'Traitement rapide du remboursement',
+        'Procédure RMA en ligne',
+        'Retour sous 30 jours',
+        'Remplacement sous 48h',
+        'Frais de retour pris en charge',
       ],
     },
     {
       icon: Lock,
       title: 'Paiement Sécurisé',
-      description: 'Vos informations de paiement sont protégées par un cryptage de pointe.',
+      description: 'Transactions sécurisées par cryptage SSL 256 bits. Facturation pro, virement, carte bancaire et paiement en plusieurs fois disponibles.',
       details: [
-        'Plusieurs modes de paiement',
-        'Cryptage SSL 256 bits',
-        'Protection contre la fraude',
-        'Confidentialité garantie',
+        'Virement bancaire (B2B)',
+        'Carte bancaire / CB pro',
+        'Paiement à 30 jours (sur devis)',
+        'Factures avec TVA déductible',
       ],
     },
     {
       icon: HelpCircle,
-      title: 'Assistance d\'Experts',
-      description: 'Notre équipe est là pour vous aider 24h/24 et 7j/7 pour toute question ou préoccupation.',
+      title: 'Support Technique Expert',
+      description: 'Notre équipe d\'ingénieurs certifiés vous accompagne avant et après l\'achat pour assurer une intégration réussie.',
       details: [
-        'Assistance par chat en direct',
-        'Assistance par e-mail',
-        'Assistance téléphonique disponible',
-        'Temps de réponse moyen : 2 heures',
+        'Hot-line technique du lun. au sam.',
+        'Tickets support en ligne 24h/24',
+        'Ingénieurs certifiés (CCIE, MCSE…)',
+        'Réponse garantie sous 4h ouvrables',
       ],
     },
   ];
@@ -59,33 +59,33 @@ export default function Support() {
   const faqs = [
     {
       id: '1',
-      question: 'Comment savoir si mes baskets sont authentiques ?',
-      answer: 'Tous les produits G-Shop sont minutieusement vérifiés par notre équipe d\'experts en authentification. Nous garantissons une authenticité à 100 % ou votre remboursement. Chaque article est accompagné d\'un certificat d\'authenticité.',
+      question: 'Les produits sont-ils garantis ?',
+      answer: 'Oui. Tout le matériel vendu sur Central IT est couvert par la garantie constructeur (12 à 36 mois selon les marques). Pour les équipements enterprise, nous proposons également des extensions de garantie et des contrats de maintenance.',
     },
     {
       id: '2',
-      question: 'Quelle est votre politique de retour ?',
-      answer: 'Nous offrons une politique de retour de 30 jours à compter de la date d\'achat. Les articles doivent être inutilisés et dans leur état d\'origine. Les retours sont gratuits et les remboursements sont traités sous 5 jours ouvrés.',
+      question: 'Proposez-vous des conseils avant achat ?',
+      answer: 'Absolument. Notre équipe d\'ingénieurs est disponible par téléphone ou par e-mail pour analyser vos besoins, valider la compatibilité des équipements et vous proposer la solution la plus adaptée à votre budget.',
     },
     {
       id: '3',
       question: 'Livrez-vous à l\'international ?',
-      answer: 'Oui ! Nous livrons dans plus de 45 pays à travers le monde. Les frais de livraison varient selon la destination, mais nous offrons des tarifs compétitifs et un suivi complet pour toutes les commandes internationales.',
+      answer: 'Oui. Nous livrons dans 28 pays. Les frais de port et délais varient selon la destination. Pour les grosses commandes, un devis logistique personnalisé est disponible sur demande.',
     },
     {
       id: '4',
-      question: 'Combien de temps prend la livraison ?',
-      answer: 'La livraison standard prend 3 à 5 jours ouvrables. La livraison internationale prend généralement 7 à 14 jours ouvrables selon votre pays. Des options express sont disponibles.',
+      question: 'Puis-je commander sur devis ?',
+      answer: 'Oui, les commandes B2B sur devis sont disponibles pour tout achat supérieur à 500 € HT. Des conditions tarifaires spéciales sont négociables pour les commandes récurrentes ou en grande quantité.',
     },
     {
       id: '5',
-      question: 'Puis-je modifier ou annuler ma commande ?',
-      answer: 'Les commandes peuvent être modifiées ou annulées dans les 24 heures suivant l\'achat. Au-delà, la commande entre dans le processus de préparation et ne peut plus être modifiée.',
+      question: 'Comment vérifier la compatibilité d\'un équipement ?',
+      answer: 'Chaque fiche produit inclut les spécifications techniques détaillées. En cas de doute, notre support technique peut réaliser une analyse de compatibilité gratuite avant votre achat.',
     },
     {
       id: '6',
-      question: 'Proposez-vous des échanges de taille ?',
-      answer: 'Absolument. Si vous avez besoin d\'une taille différente, nous proposons des échanges gratuits sous 30 jours. Contactez simplement notre équipe d\'assistance et nous organiserons tout.',
+      question: 'Proposez-vous de l\'installation sur site ?',
+      answer: 'Oui. Nous disposons d\'un réseau de techniciens certifiés pouvant intervenir sur site pour l\'installation, la configuration et la mise en production de vos équipements. Contactez-nous pour obtenir un devis.',
     },
   ];
 
@@ -99,9 +99,9 @@ export default function Support() {
           animate={{ opacity: 1, y: 0 }}
           className="container-premium text-center mb-16 md:mb-24"
         >
-          <h1 className="heading-section mb-4">Service Client</h1>
+          <h1 className="heading-section mb-4">Support Technique</h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Nous nous engageons à faire en sorte que votre expérience G-Shop soit exceptionnelle. Découvrez nos services et politiques.
+            Central IT s'engage à vous offrir un accompagnement technique de haut niveau, avant et après votre achat. Découvrez nos services et engagements.
           </p>
         </motion.div>
 
@@ -194,7 +194,7 @@ export default function Support() {
             <p className="text-lg text-gray-600 mb-8">Notre équipe d'assistance est prête à vous aider.</p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
-                href="mailto:support@g-shop.com"
+                href="mailto:support@central-it.com"
                 className="px-8 py-3 bg-black text-white rounded-lg font-semibold hover:bg-gray-900 transition-colors"
               >
                 Envoyez-nous un e-mail

@@ -31,9 +31,9 @@ export function Newsletter() {
             Restez Informé(e)
           </div>
 
-          <h2 className="heading-section mb-4">Rejoignez Notre Cercle Exclusif</h2>
+          <h2 className="heading-section mb-4">Rejoignez Notre Réseau Pro</h2>
           <p className="text-lg text-gray-600 mb-8">
-            Bénéficiez d'un accès anticipé aux nouveautés, à des histoires exclusives et à des avantages réservés aux membres directement dans votre boîte de réception.
+            Restez informé(e) des dernières innovations technologiques, des baisses de prix et de la disponibilité des composants clés.
           </p>
 
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">

@@ -5,30 +5,30 @@ import { Inter } from 'next/font/google';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'G-Shop - Collection Premium de Baskets & Streetwear',
-  description: 'Découvrez des baskets de marque sélectionnées et du streetwear exclusif. L\'authenticité, la rareté et le style rencontrent l\'innovation.',
-  metadataBase: new URL('https://g-shop.com'),
+  title: 'Central IT - Matériel Informatique Professionnel',
+  description: 'Votre expert en matériel informatique professionnel : réseaux, serveurs, stockage, workstations et infrastructure IT. Qualité enterprise, livraison rapide.',
+  metadataBase: new URL('https://central-it.com'),
   openGraph: {
     type: 'website',
     locale: 'fr_FR',
-    url: 'https://g-shop.com',
-    title: 'G-Shop - Collection Premium de Baskets & Streetwear',
-    description: 'Découvrez des baskets de marque sélectionnées et du streetwear exclusif.',
-    siteName: 'G-Shop',
+    url: 'https://central-it.com',
+    title: 'Central IT - Matériel Informatique Professionnel',
+    description: 'Expert en matériel informatique professionnel : réseaux, serveurs, stockage et infrastructure IT.',
+    siteName: 'Central IT',
     images: [
       {
-        url: 'https://images.pexels.com/photos/1926769/pexels-photo-1926769.jpeg',
+        url: 'https://images.pexels.com/photos/2881229/pexels-photo-2881229.jpeg',
         width: 1200,
         height: 630,
-        alt: 'Collection de Baskets Premium',
+        alt: 'Matériel Informatique Professionnel - Central IT',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'G-Shop - Collection Premium de Baskets & Streetwear',
-    description: 'Découvrez des baskets de marque sélectionnées et du streetwear exclusif.',
-    images: ['https://images.pexels.com/photos/1926769/pexels-photo-1926769.jpeg'],
+    title: 'Central IT - Matériel Informatique Professionnel',
+    description: 'Expert en matériel informatique professionnel : réseaux, serveurs, stockage et infrastructure IT.',
+    images: ['https://images.pexels.com/photos/2881229/pexels-photo-2881229.jpeg'],
   },
 };
 

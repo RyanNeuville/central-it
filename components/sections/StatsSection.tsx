@@ -4,9 +4,9 @@ import { motion } from 'framer-motion';
 
 export function StatsSection() {
   const stats = [
-    { label: 'Produits', value: '500+', delay: 0 },
-    { label: 'Pays', value: '45+', delay: 0.1 },
-    { label: 'Collectionneurs', value: '12K+', delay: 0.2 },
+    { label: 'Références', value: '2 000+', delay: 0 },
+    { label: 'Pays livrés', value: '28', delay: 0.1 },
+    { label: 'Clients Pro', value: '3 500+', delay: 0.2 },
     { label: 'Évaluation', value: '4.8★', delay: 0.3 },
   ];
 

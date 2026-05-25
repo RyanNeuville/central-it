@@ -7,20 +7,20 @@ import { motion } from 'framer-motion';
 export function Footer() {
   const footerSections = [
     {
-      title: 'Boutique',
+      title: 'Catalogue',
       links: [
-        { label: 'Nouveautés', href: '/shop' },
-        { label: 'Meilleures Ventes', href: '/shop' },
-        { label: 'Collections', href: '/shop' },
-        { label: 'Soldes', href: '/shop' },
+        { label: 'Réseau & Switches', href: '/shop' },
+        { label: 'Serveurs', href: '/shop' },
+        { label: 'Stockage & NAS', href: '/shop' },
+        { label: 'Workstations', href: '/shop' },
       ],
     },
     {
       title: 'Entreprise',
       links: [
         { label: 'À propos', href: '/about' },
-        { label: 'Notre histoire', href: '/about' },
-        { label: 'Carrières', href: '/' },
+        { label: 'Notre expertise', href: '/about' },
+        { label: 'Partenaires', href: '/' },
         { label: 'Presse', href: '/' },
       ],
     },
@@ -28,9 +28,9 @@ export function Footer() {
       title: 'Support',
       links: [
         { label: 'Contact', href: '/contact' },
-        { label: 'FAQ', href: '/support' },
-        { label: 'Livraison', href: '/support' },
-        { label: 'Retours', href: '/support' },
+        { label: 'FAQ Technique', href: '/support' },
+        { label: 'Garanties', href: '/support' },
+        { label: 'SAV & Retours', href: '/support' },
       ],
     },
   ];
@@ -51,9 +51,9 @@ export function Footer() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-lg font-bold mb-6">G-Shop</h3>
+            <h3 className="text-lg font-bold mb-6">Central <span className="text-blue-600">IT</span></h3>
             <p className="text-sm text-gray-600 leading-relaxed">
-              Baskets et streetwear haut de gamme pour les collectionneurs exigeants.
+              Votre partenaire de confiance pour le matériel informatique professionnel : réseaux, serveurs, stockage et infrastructure IT.
             </p>
           </motion.div>
 
@@ -91,7 +91,7 @@ export function Footer() {
               className="text-sm text-gray-600"
             >
               <p>
-                © 2025 G-Shop. Tous droits réservés. |{' '}
+                © 2025 Central IT. Tous droits réservés. |{' '}
                 <Link href="/" className="hover:text-black transition-colors">
                   Politique de confidentialité
                 </Link>{' '}

@@ -77,7 +77,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
         </div>
 
         <div className="flex items-center justify-between pt-2">
-          <span className="text-lg md:text-xl font-bold">${product.price}</span>
+          <span className="text-lg md:text-xl font-bold">{product.price} €</span>
           <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}

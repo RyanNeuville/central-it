@@ -9,29 +9,29 @@ export default function About() {
   const team = [
     {
       name: 'Sarah Chen',
-      role: 'Fondatrice & Directrice Artistique',
-      bio: 'Curatrice de baskets visionnaire avec plus de 15 ans d\'expérience dans la mode',
+      role: 'Fondatrice & Directrice Technique',
+      bio: 'Ingénieure réseau certifiée CCIE avec 15 ans d\'expérience en infrastructure d\'entreprise',
       image: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg',
     },
     {
       name: 'Marcus Williams',
-      role: 'Cofondateur & Opérations',
-      bio: 'Passionné de baskets veillant à ce que chaque expérience soit parfaite',
+      role: 'Cofondateur & Responsable Logistique',
+      bio: 'Expert supply-chain IT garantissant des délais de livraison optimaux et la disponibilité des stocks',
       image: 'https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg',
     },
     {
       name: 'Elena Rodriguez',
-      role: 'Gestionnaire de Communauté',
-      bio: 'Créer des liens authentiques avec la famille G-Shop',
+      role: 'Responsable Support Technique',
+      bio: 'Ingénieure systèmes et réseaux, elle accompagne nos clients de l\'installation à la maintenance',
       image: 'https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg',
     },
   ];
 
   const stats = [
-    { label: 'Collectionneurs Heureux', value: '12K+' },
-    { label: 'Articles Premium', value: '500+' },
-    { label: 'Pays', value: '45' },
-    { label: 'Années d\'expérience', value: '15+' },
+    { label: 'Clients Professionnels', value: '3 500+' },
+    { label: 'Références en stock', value: '2 000+' },
+    { label: 'Pays livrés', value: '28' },
+    { label: 'Années d\'expertise IT', value: '12+' },
   ];
 
   return (
@@ -56,7 +56,7 @@ export default function About() {
           >
             <h1 className="heading-hero mb-4">Notre Histoire</h1>
             <p className="text-xl max-w-2xl mx-auto">
-              G-Shop est né d'une passion pour la culture authentique des baskets et du désir d'élever l'ensemble de l'expérience.
+              Central IT est né de la conviction que les professionnels méritent un accès simple, rapide et fiable au meilleur matériel informatique.
             </p>
           </motion.div>
         </div>
@@ -71,7 +71,7 @@ export default function About() {
             <div>
               <h2 className="heading-section mb-4">Ce qui nous motive</h2>
               <p className="text-lg text-gray-700 leading-relaxed">
-                Nous pensons que les baskets sont plus que de simples chaussures : elles sont l'expression de l'individualité, de la créativité et de la connexion. Fondé en 2010, G-Shop est né d'une vision simple : créer un espace où l'authenticité et l'innovation se rencontrent. Chaque produit que nous présentons est sélectionné à la main, vérifié et célébré pour son savoir-faire et sa signification culturelle.
+                Nous pensons que les professionnels de l'IT méritent un partenaire qui comprend leurs contraintes techniques et opérationnelles. Fondé en 2013, Central IT est né d'une vision simple : offrir aux ingénieurs, développeurs et DSI un accès rapide à du matériel informatique professionnel de qualité, avec un accompagnement technique de haut niveau. Chaque référence est sélectionnée, testée et validée par nos experts.
               </p>
             </div>
 
@@ -79,18 +79,18 @@ export default function About() {
               {[
                 {
                   icon: Heart,
-                  title: 'Passion',
-                  description: 'Amour profond pour la culture de la basket et du streetwear',
+                  title: 'Expertise',
+                  description: 'Une équipe d\'ingénieurs certifiés pour vous conseiller sur chaque projet IT',
                 },
                 {
                   icon: Target,
                   title: 'Excellence',
-                  description: 'Engagement indéfectible envers la qualité et l\'authenticité',
+                  description: 'Uniquement des produits de qualité enterprise, sélectionnés et validés par nos experts',
                 },
                 {
                   icon: Users,
-                  title: 'Communauté',
-                  description: 'Établir des liens authentiques avec les collectionneurs du monde entier',
+                  title: 'Partenariat',
+                  description: 'Un suivi personnalisé de la pré-vente à l\'installation et la maintenance',
                 },
               ].map((value, idx) => (
                 <motion.div
@@ -147,7 +147,7 @@ export default function About() {
             className="text-center mb-16"
           >
             <h2 className="heading-section mb-4">Rencontrez l'Équipe</h2>
-            <p className="text-lg text-gray-600">Les personnes derrière G-Shop</p>
+            <p className="text-lg text-gray-600">Les experts derrière Central IT</p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
