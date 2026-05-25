@@ -42,9 +42,9 @@ export const products: Product[] = [
     name: 'Clavier Mécanique Apex RGB - Switchs Red',
     price: 189,
     category: 'Claviers',
-    image: 'https://images.pexels.com/photos/8412288/pexels-photo-8412288.jpeg',
+    image: 'https://i.pinimg.com/736x/ea/a0/70/eaa070fc0b13b034a2f68f37aef1aa9a.jpg',
     images: [
-      'https://images.pexels.com/photos/8412288/pexels-photo-8412288.jpeg',
+      'https://i.pinimg.com/736x/ea/a0/70/eaa070fc0b13b034a2f68f37aef1aa9a.jpg',
       'https://images.pexels.com/photos/399160/pexels-photo-399160.jpeg',
     ],
     description: 'Clavier mécanique haut de gamme pour joueurs et développeurs. Rétroéclairage RGB touche par touche, switches linéaires opto-mécaniques ultra-réactifs et châssis robuste en aluminium.',
@@ -82,9 +82,10 @@ export const products: Product[] = [
     name: 'Souris Ergonomique ErgoMaster Pro',
     price: 119,
     category: 'Souris',
-    image: 'https://images.pexels.com/photos/5082570/pexels-photo-5082570.jpeg',
+    image: 'https://i.pinimg.com/736x/c9/d7/c6/c9d7c611057c6ac1c7518e5600d74d03.jpg',
     images: [
-      'https://images.pexels.com/photos/5082570/pexels-photo-5082570.jpeg',
+      'https://i.pinimg.com/736x/c9/d7/c6/c9d7c611057c6ac1c7518e5600d74d03.jpg',
+      'https://i.pinimg.com/736x/75/c1/7e/75c17e816e872a0378336ccda316059f.jpg'
     ],
     description: 'Souris ergonomique verticale conçue pour réduire les tensions musculaires et la fatigue du poignet. Idéale pour les longues journées de développement et de travail de bureau.',
     rating: 4.8,
@@ -201,9 +202,9 @@ export const products: Product[] = [
     name: 'Souris Nomade GoMouse Wireless',
     price: 49,
     category: 'Souris',
-    image: 'https://images.pexels.com/photos/5082570/pexels-photo-5082570.jpeg',
+    image: 'https://i.pinimg.com/736x/2d/bf/a3/2dbfa300bc1963ef9193148f4bc1ab0d.jpg',
     images: [
-      'https://images.pexels.com/photos/5082570/pexels-photo-5082570.jpeg',
+      'https://i.pinimg.com/736x/2d/bf/a3/2dbfa300bc1963ef9193148f4bc1ab0d.jpg',
     ],
     description: 'Souris portable sans fil ultra-plate et silencieuse. Elle se glisse facilement dans une sacoche de voyage et propose une double connectivité Bluetooth et dongle USB.',
     rating: 4.5,
@@ -220,9 +221,9 @@ export const products: Product[] = [
     name: 'Clavier Bluetooth SlimKeys Multi-Sync',
     price: 89,
     category: 'Claviers',
-    image: 'https://images.pexels.com/photos/399160/pexels-photo-399160.jpeg',
+    image: 'https://i.pinimg.com/1200x/1b/56/3e/1b563e7d910ef8392bf358006f55194e.jpg',
     images: [
-      'https://images.pexels.com/photos/399160/pexels-photo-399160.jpeg',
+      'https://i.pinimg.com/1200x/1b/56/3e/1b563e7d910ef8392bf358006f55194e.jpg',
     ],
     description: 'Clavier Bluetooth ultra-fin en aluminium. switches à ciseaux de précision pour une frappe douce et silencieuse. Associez et basculez instantanément entre 3 appareils.',
     rating: 4.6,
