@@ -106,6 +106,7 @@ export default function Home() {
                 className="p-8 bg-gray-50 rounded-lg border border-gray-100"
               >
                 <div className="flex items-center gap-4 mb-6">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={testimonial.avatar}
                     alt={testimonial.author}

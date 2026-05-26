@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Navbar } from '@/components/layout/Navbar';
-import { Footer } from '@/components/layout/Footer';
-import { ProductCard } from '@/components/sections/ProductCard';
-import { products } from '@/lib/products';
-import { motion } from 'framer-motion';
-import { Heart, ShoppingBag, Star, Share2, Check } from 'lucide-react';
-import Link from 'next/link';
-import { useCart } from '@/lib/CartContext';
+import { useState } from "react";
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
+import { ProductCard } from "@/components/sections/ProductCard";
+import { products } from "@/lib/products";
+import { motion } from "framer-motion";
+import { Heart, ShoppingBag, Star, Share2, Check } from "lucide-react";
+import Link from "next/link";
+import { useCart } from "@/lib/CartContext";
 
 export default function ProductPage({ params }: { params: { id: string } }) {
   const product = products.find((p) => p.id === params.id);
@@ -76,10 +76,17 @@ export default function ProductPage({ params }: { params: { id: string } }) {
                       onClick={() => setSelectedImage(idx)}
                       whileHover={{ scale: 1.05 }}
                       className={`w-20 h-20 rounded-lg overflow-hidden border-2 transition-colors ${
-                        selectedImage === idx ? 'border-black' : 'border-gray-200'
+                        selectedImage === idx
+                          ? "border-black"
+                          : "border-gray-200"
                       }`}
                     >
-                      <img src={img} alt={`${product.name} ${idx}`} className="w-full h-full object-cover" />
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={img}
+                        alt={`${product.name} ${idx}`}
+                        className="w-full h-full object-cover"
+                      />
                     </motion.button>
                   ))}
                 </div>
@@ -107,7 +114,11 @@ export default function ProductPage({ params }: { params: { id: string } }) {
                     <Star
                       key={i}
                       size={18}
-                      className={i < Math.floor(product.rating) ? 'fill-gray-900 text-gray-900' : 'text-gray-300'}
+                      className={
+                        i < Math.floor(product.rating)
+                          ? "fill-gray-900 text-gray-900"
+                          : "text-gray-300"
+                      }
                     />
                   ))}
                 </div>
@@ -118,7 +129,9 @@ export default function ProductPage({ params }: { params: { id: string } }) {
 
               <div className="text-3xl font-bold">{product.price} € HT</div>
 
-              <p className="text-gray-700 leading-relaxed text-lg">{product.description}</p>
+              <p className="text-gray-700 leading-relaxed text-lg">
+                {product.description}
+              </p>
 
               {product.specs && (
                 <div className="pt-6 border-t border-gray-100 space-y-3">
@@ -140,7 +153,9 @@ export default function ProductPage({ params }: { params: { id: string } }) {
                   >
                     −
                   </button>
-                  <span className="px-6 py-2 border-l border-r border-gray-200">{quantity}</span>
+                  <span className="px-6 py-2 border-l border-r border-gray-200">
+                    {quantity}
+                  </span>
                   <button
                     onClick={() => setQuantity(quantity + 1)}
                     className="px-4 py-2 hover:bg-gray-100 transition-colors"
@@ -154,7 +169,9 @@ export default function ProductPage({ params }: { params: { id: string } }) {
                   whileTap={{ scale: 0.98 }}
                   onClick={handleAddToCart}
                   className={`flex-1 px-8 py-3 text-white rounded-lg font-semibold flex items-center justify-center gap-2 transition-all ${
-                    isAdded ? 'bg-green-600 hover:bg-green-700' : 'bg-black hover:bg-gray-900'
+                    isAdded
+                      ? "bg-green-600 hover:bg-green-700"
+                      : "bg-black hover:bg-gray-900"
                   }`}
                 >
                   {isAdded ? (
@@ -178,7 +195,11 @@ export default function ProductPage({ params }: { params: { id: string } }) {
                 >
                   <Heart
                     size={20}
-                    className={isWishlisted ? 'fill-red-500 text-red-500' : 'text-gray-400'}
+                    className={
+                      isWishlisted
+                        ? "fill-red-500 text-red-500"
+                        : "text-gray-400"
+                    }
                   />
                 </motion.button>
               </div>
@@ -214,7 +235,9 @@ export default function ProductPage({ params }: { params: { id: string } }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="heading-section mb-12 text-center">Produits Similaires</h2>
+              <h2 className="heading-section mb-12 text-center">
+                Produits Similaires
+              </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
                 {relatedProducts.map((p, idx) => (
                   <ProductCard key={p.id} product={p} index={idx} />
