@@ -6,14 +6,25 @@ import { Footer } from '@/components/layout/Footer';
 import { ProductCard } from '@/components/sections/ProductCard';
 import { products } from '@/lib/products';
 import { motion } from 'framer-motion';
-import { Heart, ShoppingBag, Star, Share2 } from 'lucide-react';
+import { Heart, ShoppingBag, Star, Share2, Check } from 'lucide-react';
 import Link from 'next/link';
+import { useCart } from '@/lib/CartContext';
 
 export default function ProductPage({ params }: { params: { id: string } }) {
   const product = products.find((p) => p.id === params.id);
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [isWishlisted, setIsWishlisted] = useState(false);
+  const [isAdded, setIsAdded] = useState(false);
+  const { addItem } = useCart();
+
+  const handleAddToCart = () => {
+    if (product) {
+      addItem(product, quantity);
+      setIsAdded(true);
+      setTimeout(() => setIsAdded(false), 2000);
+    }
+  };
 
   if (!product) {
     return (
@@ -141,10 +152,22 @@ export default function ProductPage({ params }: { params: { id: string } }) {
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="flex-1 px-8 py-3 bg-black text-white rounded-lg font-semibold flex items-center justify-center gap-2 hover:bg-gray-900 transition-all"
+                  onClick={handleAddToCart}
+                  className={`flex-1 px-8 py-3 text-white rounded-lg font-semibold flex items-center justify-center gap-2 transition-all ${
+                    isAdded ? 'bg-green-600 hover:bg-green-700' : 'bg-black hover:bg-gray-900'
+                  }`}
                 >
-                  <ShoppingBag size={20} />
-                  Ajouter au Panier
+                  {isAdded ? (
+                    <>
+                      <Check size={20} />
+                      Ajouté !
+                    </>
+                  ) : (
+                    <>
+                      <ShoppingBag size={20} />
+                      Ajouter au Panier
+                    </>
+                  )}
                 </motion.button>
 
                 <motion.button

@@ -116,7 +116,7 @@ export default function Home() {
                     <p className="text-xs text-gray-500">{testimonial.role}</p>
                   </div>
                 </div>
-                <p className="text-gray-700 italic">"{testimonial.content}"</p>
+                <p className="text-gray-700 italic">&quot;{testimonial.content}&quot;</p>
               </motion.div>
             ))}
           </div>

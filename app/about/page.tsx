@@ -41,8 +41,9 @@ export default function About() {
       <div className="pt-32">
         <div className="relative min-h-[400px] flex items-center justify-center overflow-hidden">
           <div className="absolute inset-0">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="https://images.pexels.com/photos/1926769/pexels-photo-1926769.jpeg"
+              src="https://images.pexels.com/photos/1714208/pexels-photo-1714208.jpeg"
               alt="Notre histoire"
               className="w-full h-full object-cover"
             />
@@ -161,6 +162,7 @@ export default function About() {
                 className="text-center"
               >
                 <div className="mb-6 overflow-hidden rounded-lg aspect-square">
+                  {/*  eslint-disable-next-line @next/next/no-img-element */}
                   <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
                 </div>
                 <h3 className="text-xl font-bold mb-1">{member.name}</h3>

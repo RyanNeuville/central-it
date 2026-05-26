@@ -8,6 +8,7 @@ export function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
       <div className="absolute inset-0 z-0">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="https://images.pexels.com/photos/1714208/pexels-photo-1714208.jpeg"
           alt="Périphériques informatiques haut de gamme et espace de travail"

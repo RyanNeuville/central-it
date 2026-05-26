@@ -1,30 +1,32 @@
-'use client';
+"use client";
 
-import { useState, useMemo } from 'react';
-import { Navbar } from '@/components/layout/Navbar';
-import { Footer } from '@/components/layout/Footer';
-import { ProductCard } from '@/components/sections/ProductCard';
-import { products, categories, categoryIdMap } from '@/lib/products';
-import { motion } from 'framer-motion';
-import { Filter } from 'lucide-react';
+import { useState, useMemo } from "react";
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
+import { ProductCard } from "@/components/sections/ProductCard";
+import { products, categories, categoryIdMap } from "@/lib/products";
+import { motion } from "framer-motion";
+import { Filter } from "lucide-react";
 
 export default function Shop() {
-  const [selectedCategory, setSelectedCategory] = useState('all');
-  const [sortBy, setSortBy] = useState('newest');
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [sortBy, setSortBy] = useState("newest");
   const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
 
   const filteredProducts = useMemo(() => {
     let result = [...products];
 
-    if (selectedCategory !== 'all') {
-      result = result.filter((p) => p.category === categoryIdMap[selectedCategory]);
+    if (selectedCategory !== "all") {
+      result = result.filter(
+        (p) => p.category === categoryIdMap[selectedCategory],
+      );
     }
 
-    if (sortBy === 'price-low') {
+    if (sortBy === "price-low") {
       result.sort((a, b) => a.price - b.price);
-    } else if (sortBy === 'price-high') {
+    } else if (sortBy === "price-high") {
       result.sort((a, b) => b.price - a.price);
-    } else if (sortBy === 'rating') {
+    } else if (sortBy === "rating") {
       result.sort((a, b) => b.rating - a.rating);
     }
 
@@ -42,9 +44,27 @@ export default function Shop() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-8"
           >
-            <h1 className="heading-section mb-2">Notre Collection</h1>
-            <p className="text-gray-600">
-              {filteredProducts.length === 1 ? '1 article' : `${filteredProducts.length} articles`}
+            <h1 className="relative">
+              <svg
+                width="219"
+                height="24"
+                viewBox="0 0 219 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="absolute inset-x-0 -bottom-6 w-full text-blue-500"
+              >
+                <path
+                  d="M0.5 2H218L21 12.5H182.5L48.5 21.5H151"
+                  stroke="currentColor"
+                  stroke-width="4"
+                ></path>
+              </svg>
+              <span className="relative heading-section">Notre Collection</span>
+            </h1>
+            <p className="text-gray-600 mt-8">
+              {filteredProducts.length === 1
+                ? "1 article"
+                : `${filteredProducts.length} articles`}
             </p>
           </motion.div>
         </div>
@@ -66,8 +86,12 @@ export default function Shop() {
                 className="px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-black text-sm"
               >
                 <option value="newest">Nouveautés</option>
-                <option value="price-low">Prix : du plus bas au plus haut</option>
-                <option value="price-high">Prix : du plus haut au plus bas</option>
+                <option value="price-low">
+                  Prix : du plus bas au plus haut
+                </option>
+                <option value="price-high">
+                  Prix : du plus haut au plus bas
+                </option>
                 <option value="rating">Les mieux notés</option>
               </select>
             </div>
@@ -79,7 +103,7 @@ export default function Shop() {
             <motion.aside
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              className={`${mobileFilterOpen ? 'block' : 'hidden'} md:block lg:sticky lg:top-24 h-fit`}
+              className={`${mobileFilterOpen ? "block" : "hidden"} md:block lg:sticky lg:top-24 h-fit`}
             >
               <div>
                 <h3 className="font-bold mb-4">Catégories</h3>
@@ -93,35 +117,13 @@ export default function Shop() {
                       }}
                       className={`block w-full text-left px-3 py-2 rounded-lg transition-all ${
                         selectedCategory === cat.id
-                          ? 'bg-black text-white font-semibold'
-                          : 'text-gray-600 hover:bg-gray-100'
+                          ? "bg-black text-white font-semibold"
+                          : "text-gray-600 hover:bg-gray-100"
                       }`}
                     >
                       {cat.name}
                     </button>
                   ))}
-                </div>
-              </div>
-
-              <div className="mt-8 pt-8 border-t border-gray-100">
-                <h3 className="font-bold mb-4">Gamme de Prix</h3>
-                <div className="space-y-2 text-sm text-gray-600">
-                  <label className="flex items-center gap-2 cursor-pointer hover:text-black transition-colors">
-                    <input type="checkbox" className="rounded" />
-                    <span>Moins de 200 €</span>
-                  </label>
-                  <label className="flex items-center gap-2 cursor-pointer hover:text-black transition-colors">
-                    <input type="checkbox" className="rounded" />
-                    <span>200 € - 500 €</span>
-                  </label>
-                  <label className="flex items-center gap-2 cursor-pointer hover:text-black transition-colors">
-                    <input type="checkbox" className="rounded" />
-                    <span>500 € - 1000 €</span>
-                  </label>
-                  <label className="flex items-center gap-2 cursor-pointer hover:text-black transition-colors">
-                    <input type="checkbox" className="rounded" />
-                    <span>Plus de 1000 €</span>
-                  </label>
                 </div>
               </div>
             </motion.aside>
@@ -139,7 +141,9 @@ export default function Shop() {
 
               {filteredProducts.length === 0 && (
                 <div className="col-span-2 py-16 text-center">
-                  <p className="text-gray-500">Aucun produit trouvé dans cette catégorie.</p>
+                  <p className="text-gray-500">
+                    Aucun produit trouvé dans cette catégorie.
+                  </p>
                 </div>
               )}
             </div>
