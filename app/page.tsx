@@ -106,6 +106,7 @@ export default function Home() {
                 className="p-8 bg-gray-50 rounded-lg border border-gray-100"
               >
                 <div className="flex items-center gap-4 mb-6">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={testimonial.avatar}
                     alt={testimonial.author}
@@ -116,7 +117,7 @@ export default function Home() {
                     <p className="text-xs text-gray-500">{testimonial.role}</p>
                   </div>
                 </div>
-                <p className="text-gray-700 italic">"{testimonial.content}"</p>
+                <p className="text-gray-700 italic">&quot;{testimonial.content}&quot;</p>
               </motion.div>
             ))}
           </div>

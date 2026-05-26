@@ -5,12 +5,14 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X, Search, Cpu, ShoppingCart } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useCart } from '@/lib/CartContext';
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
   const isSolid = isScrolled || pathname !== '/';
+  const { totalItems } = useCart();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -101,13 +103,18 @@ export function Navbar() {
               <Search size={20} />
             </button>
             <Link
-              href="/shop"
-              className={`p-2 rounded-lg transition-colors ${
+              href="/cart"
+              className={`relative p-2 rounded-lg transition-colors ${
                 isSolid ? 'hover:bg-gray-100 text-gray-700' : 'hover:bg-white/10 text-white'
               }`}
-              aria-label="Catalogue produits"
+              aria-label="Panier d'achats"
             >
               <ShoppingCart size={20} />
+              {totalItems > 0 && (
+                <span className="absolute top-0 right-0 -mt-1 -mr-1 flex h-4 w-4 items-center justify-center rounded-full bg-blue-600 text-[10px] font-bold text-white">
+                  {totalItems}
+                </span>
+              )}
             </Link>
 
             <button

@@ -99,7 +99,23 @@ export default function Support() {
           animate={{ opacity: 1, y: 0 }}
           className="container-premium text-center mb-16 md:mb-24"
         >
-          <h1 className="heading-section mb-4">Support Technique</h1>
+          <h1 className="relative mb-8">
+              <svg
+                width="219"
+                height="24"
+                viewBox="0 0 219 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="absolute inset-x-0 -bottom-6 w-full text-blue-500"
+              >
+                <path
+                  d="M0.5 2H218L21 12.5H182.5L48.5 21.5H151"
+                  stroke="currentColor"
+                  stroke-width="4"
+                ></path>
+              </svg>
+              <span className="relative heading-section">Support Technique</span>
+            </h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Central IT s&apos;engage à vous offrir un accompagnement technique de haut niveau, avant et après votre achat. Découvrez nos services et engagements.
           </p>

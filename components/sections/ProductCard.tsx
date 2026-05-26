@@ -2,9 +2,10 @@
 
 import { Product } from '@/lib/products';
 import { motion } from 'framer-motion';
-import { Heart, ShoppingBag, Star } from 'lucide-react';
+import { Heart, ShoppingBag, Star, Check } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
+import { useCart } from '@/lib/CartContext';
 
 interface ProductCardProps {
   product: Product;
@@ -13,6 +14,14 @@ interface ProductCardProps {
 
 export function ProductCard({ product, index = 0 }: ProductCardProps) {
   const [isWishlisted, setIsWishlisted] = useState(false);
+  const [isAdded, setIsAdded] = useState(false);
+  const { addItem } = useCart();
+
+  const handleAddToCart = () => {
+    addItem(product);
+    setIsAdded(true);
+    setTimeout(() => setIsAdded(false), 2000);
+  };
 
   return (
     <motion.div
@@ -81,9 +90,12 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
           <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
-            className="p-2 bg-black text-white rounded-lg hover:bg-gray-900 transition-colors"
+            onClick={handleAddToCart}
+            className={`p-2 rounded-lg transition-colors text-white ${
+              isAdded ? 'bg-green-600 hover:bg-green-700' : 'bg-black hover:bg-gray-900'
+            }`}
           >
-            <ShoppingBag size={18} />
+            {isAdded ? <Check size={18} /> : <ShoppingBag size={18} />}
           </motion.button>
         </div>
       </div>
