@@ -15,8 +15,6 @@ export default function CheckoutPage() {
   const [currentStep, setCurrentStep] = useState<Step>('info');
   const [orderNumber, setOrderNumber] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
-  const [clientEmailPreview, setClientEmailPreview] = useState<string>('');
-  const [adminEmailPreview, setAdminEmailPreview] = useState<string>('');
 
   const subtotal = totalPrice;
   const shipping = subtotal > 200 ? 0 : 15;
@@ -56,39 +54,38 @@ export default function CheckoutPage() {
     e.preventDefault();
     setIsProcessing(true);
     
-    // 1. On génère le numéro de commande et les templates HTML (100% Frontend)
     const newOrderNumber = `CMD-${Math.random().toString(36).substr(2, 9).toUpperCase()}`;
     const clientHtml = generateClientEmailHtml(info, address, items, subtotal, shipping, tva, total, newOrderNumber);
     const adminHtml = generateAdminEmailHtml(info, address, items, subtotal, shipping, tva, total, newOrderNumber);
     
     try {
-      /* 
-        === INTEGRATION EMAILJS (SANS BACKEND) ===
-        Créez un compte gratuit sur emailjs.com
-        1. Ajoutez un service email (ex: Gmail)
-        2. Créez un template avec les variables {{{html_content}}} et {{{to_email}}}
-        3. Remplacez les clés ci-dessous par les vôtres
-      */
-      const SERVICE_ID = 'YOUR_SERVICE_ID';
-      const TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
-      const PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
+      const SERVICE_ID = 'service_0ksrbxk';
+      const TEMPLATE_ID = 'template_3wspinx';
+      const PUBLIC_KEY = '7Z6usR6NcmAl4vTt7';
 
-      // Pour activer l'envoi réel, décommentez les lignes ci-dessous avec vos vraies clés EmailJS :
+      // Envoi de l'email au client
+      await emailjs.send(SERVICE_ID, TEMPLATE_ID, { 
+        html_content: clientHtml, 
+        email: info.email,
+        order_id: newOrderNumber
+      }, PUBLIC_KEY);
       
-      // await emailjs.send(SERVICE_ID, TEMPLATE_ID, { html_content: clientHtml, to_email: info.email }, PUBLIC_KEY);
-      // await emailjs.send(SERVICE_ID, TEMPLATE_ID, { html_content: adminHtml, to_email: 'admin@central-it.com' }, PUBLIC_KEY);
-
-      // Simulation d'attente pour le feedback UX
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // Envoi de l'email à l'admin
+      await emailjs.send(SERVICE_ID, TEMPLATE_ID, { 
+        html_content: adminHtml, 
+        email: 'feukouoryan@icloud.com',
+        order_id: newOrderNumber
+      }, PUBLIC_KEY);
 
       setOrderNumber(newOrderNumber);
-      setClientEmailPreview(clientHtml);
-      setAdminEmailPreview(adminHtml);
       setCurrentStep('confirmation');
       clearCart();
     } catch (error) {
-      console.error(error);
-      alert("Erreur lors du traitement de la commande.");
+      console.error("Erreur lors de l'envoi de l'email via EmailJS:", error);
+      // Même si l'email échoue, on confirme la commande pour ne pas bloquer l'utilisateur
+      setOrderNumber(newOrderNumber);
+      setCurrentStep('confirmation');
+      clearCart();
     } finally {
       setIsProcessing(false);
     }
@@ -143,32 +140,6 @@ export default function CheckoutPage() {
               <Link href="/" className="px-8 py-3 bg-black text-white rounded-lg font-bold hover:bg-gray-900 transition-colors inline-block">
                 Retour à l&apos;accueil
               </Link>
-            </div>
-
-            <div className="text-left mt-8 pt-8 border-t border-gray-200">
-              <h3 className="text-xl font-bold mb-2 text-center">👀 Prévisualisation des Emails (Frontend Only)</h3>
-              <p className="text-sm text-gray-500 mb-8 text-center max-w-lg mx-auto">
-                Voici exactement les emails qui seront envoyés via EmailJS au client et à l&apos;administrateur. Le code d&apos;intégration est prêt dans <code className="bg-gray-100 px-1 rounded">page.tsx</code>.
-              </p>
-              
-              <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
-                <div>
-                  <h4 className="font-semibold text-blue-600 mb-3 flex items-center gap-2">
-                    <User size={18} /> Email envoyé au Client ({info.email})
-                  </h4>
-                  <div className="border border-gray-200 rounded-xl overflow-hidden bg-gray-50 p-2 shadow-inner">
-                     <iframe srcDoc={clientEmailPreview} className="w-full h-[650px] bg-white rounded-lg shadow-sm" title="Email Client" />
-                  </div>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-green-600 mb-3 flex items-center gap-2">
-                    <ShieldCheck size={18} /> Email envoyé à l&apos;Admin (admin@central-it.com)
-                  </h4>
-                  <div className="border border-gray-200 rounded-xl overflow-hidden bg-gray-50 p-2 shadow-inner">
-                     <iframe srcDoc={adminEmailPreview} className="w-full h-[650px] bg-white rounded-lg shadow-sm" title="Email Admin" />
-                  </div>
-                </div>
-              </div>
             </div>
           </motion.div>
         ) : (
