@@ -5,6 +5,8 @@ import { useCart } from '@/lib/CartContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Check, ChevronRight, Lock, CreditCard, User, MapPin, Truck, ArrowRight, ShieldCheck } from 'lucide-react';
 import Link from 'next/link';
+import emailjs from '@emailjs/browser';
+import { generateClientEmailHtml, generateAdminEmailHtml } from '@/lib/emailTemplates';
 
 type Step = 'info' | 'shipping' | 'payment' | 'confirmation';
 
@@ -13,6 +15,8 @@ export default function CheckoutPage() {
   const [currentStep, setCurrentStep] = useState<Step>('info');
   const [orderNumber, setOrderNumber] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
+  const [clientEmailPreview, setClientEmailPreview] = useState<string>('');
+  const [adminEmailPreview, setAdminEmailPreview] = useState<string>('');
 
   const subtotal = totalPrice;
   const shipping = subtotal > 200 ? 0 : 15;
@@ -48,16 +52,46 @@ export default function CheckoutPage() {
     { id: 'payment', label: 'Paiement', icon: CreditCard },
   ];
 
-  const handleProcessPayment = (e: React.FormEvent) => {
+  const handleProcessPayment = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsProcessing(true);
-    // Simulate API call for payment
-    setTimeout(() => {
-      setOrderNumber(`CMD-${Math.random().toString(36).substr(2, 9).toUpperCase()}`);
-      setIsProcessing(false);
+    
+    // 1. On génère le numéro de commande et les templates HTML (100% Frontend)
+    const newOrderNumber = `CMD-${Math.random().toString(36).substr(2, 9).toUpperCase()}`;
+    const clientHtml = generateClientEmailHtml(info, address, items, subtotal, shipping, tva, total, newOrderNumber);
+    const adminHtml = generateAdminEmailHtml(info, address, items, subtotal, shipping, tva, total, newOrderNumber);
+    
+    try {
+      /* 
+        === INTEGRATION EMAILJS (SANS BACKEND) ===
+        Créez un compte gratuit sur emailjs.com
+        1. Ajoutez un service email (ex: Gmail)
+        2. Créez un template avec les variables {{{html_content}}} et {{{to_email}}}
+        3. Remplacez les clés ci-dessous par les vôtres
+      */
+      const SERVICE_ID = 'YOUR_SERVICE_ID';
+      const TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+      const PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
+
+      // Pour activer l'envoi réel, décommentez les lignes ci-dessous avec vos vraies clés EmailJS :
+      
+      // await emailjs.send(SERVICE_ID, TEMPLATE_ID, { html_content: clientHtml, to_email: info.email }, PUBLIC_KEY);
+      // await emailjs.send(SERVICE_ID, TEMPLATE_ID, { html_content: adminHtml, to_email: 'admin@central-it.com' }, PUBLIC_KEY);
+
+      // Simulation d'attente pour le feedback UX
+      await new Promise(resolve => setTimeout(resolve, 1500));
+
+      setOrderNumber(newOrderNumber);
+      setClientEmailPreview(clientHtml);
+      setAdminEmailPreview(adminHtml);
       setCurrentStep('confirmation');
       clearCart();
-    }, 2000);
+    } catch (error) {
+      console.error(error);
+      alert("Erreur lors du traitement de la commande.");
+    } finally {
+      setIsProcessing(false);
+    }
   };
 
   return (
@@ -105,9 +139,37 @@ export default function CheckoutPage() {
               </div>
             </div>
 
-            <Link href="/" className="px-8 py-3 bg-black text-white rounded-lg font-bold hover:bg-gray-900 transition-colors inline-block">
-              Retour à l'accueil
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
+              <Link href="/" className="px-8 py-3 bg-black text-white rounded-lg font-bold hover:bg-gray-900 transition-colors inline-block">
+                Retour à l&apos;accueil
+              </Link>
+            </div>
+
+            <div className="text-left mt-8 pt-8 border-t border-gray-200">
+              <h3 className="text-xl font-bold mb-2 text-center">👀 Prévisualisation des Emails (Frontend Only)</h3>
+              <p className="text-sm text-gray-500 mb-8 text-center max-w-lg mx-auto">
+                Voici exactement les emails qui seront envoyés via EmailJS au client et à l&apos;administrateur. Le code d&apos;intégration est prêt dans <code className="bg-gray-100 px-1 rounded">page.tsx</code>.
+              </p>
+              
+              <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
+                <div>
+                  <h4 className="font-semibold text-blue-600 mb-3 flex items-center gap-2">
+                    <User size={18} /> Email envoyé au Client ({info.email})
+                  </h4>
+                  <div className="border border-gray-200 rounded-xl overflow-hidden bg-gray-50 p-2 shadow-inner">
+                     <iframe srcDoc={clientEmailPreview} className="w-full h-[650px] bg-white rounded-lg shadow-sm" title="Email Client" />
+                  </div>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-green-600 mb-3 flex items-center gap-2">
+                    <ShieldCheck size={18} /> Email envoyé à l&apos;Admin (admin@central-it.com)
+                  </h4>
+                  <div className="border border-gray-200 rounded-xl overflow-hidden bg-gray-50 p-2 shadow-inner">
+                     <iframe srcDoc={adminEmailPreview} className="w-full h-[650px] bg-white rounded-lg shadow-sm" title="Email Admin" />
+                  </div>
+                </div>
+              </div>
+            </div>
           </motion.div>
         ) : (
           <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
