@@ -2,6 +2,20 @@
 
 > **Rédigée par Ryan Neuville**
 > *Cette documentation est faite pour toi, grand frère. Je voulais que tu puisses comprendre exactement ce que j'ai construit, comment ça marche, et pourquoi j'ai fait certains choix. Pas de blabla inutile, on va droit au but.*
+>
+> *PS : Si tu veux voir les commentaires directement dans le code, ils sont tous en `/** */` — c'est le format JSDoc standard. Je les ai écrits comme si je t'expliquais le code à voix haute.*
+
+---
+
+## 🗺️ Comment lire ce projet (si tu débutes en Next.js)
+
+Si tu n'as jamais touché à Next.js, voici les quelques notions à connaître pour que le code ait du sens :
+
+- **App Router** : Chaque dossier dans `app/` crée automatiquement une route. `app/shop/page.tsx` = l'URL `/shop`. Magique, non ?
+- **`'use client'`** : Certains composants ont cette ligne en haut. Elle veut dire "ce composant s'exécute dans le navigateur". Si elle n'est pas là, le composant tourne sur le serveur (plus rapide au chargement).
+- **Props `params`** : Dans `app/product/[id]/page.tsx`, la prop `params` reçoit automatiquement l'ID depuis l'URL. C'est ce qui permet d'avoir une page dynamique pour chaque produit.
+- **JSX** : C'est du HTML écrit dans du JavaScript. Tu verras des `{/* commentaire */}` dans le JSX — c'est l'équivalent des `<!-- commentaire -->` en HTML.
+- **Context API** : Le moyen React de partager des données entre plusieurs pages. J'explique ça en détail dans la section panier plus bas.
 
 ---
 
@@ -153,17 +167,40 @@ Le `[id]` dans le nom du dossier est une **route dynamique**. Ça veut dire que 
 ### `app/cart/page.tsx` — Le Panier
 Affiche le contenu du panier avec les quantités modifiables. Calcule le sous-total, les frais de port (gratuit dès 200€ HT), et mène vers le checkout.
 
+**Ce qui s'y passe techniquement :**
+- `"use client"` parce que tout est interactif (boutons +/-/supprimer)
+- On utilise `useCart()` pour récupérer les articles, les fonctions de modification, et le prix total
+- Si le panier est vide, un message sympa invite à explorer le catalogue
+- Les animations d'ajout/suppression sont gérées par `AnimatePresence` de Framer Motion (pour que les articles disparaissent en fondu)
+- Le calcul est simple : sous-total = somme des prix, livraison = 0€ si >200€ d'achat
+
 ### `app/checkout/page.tsx` — La Commande (⭐ Le plus complexe)
 Un formulaire en 3 étapes avec animations de transition entre chaque étape :
 - **Étape 1 (info)** : Prénom, Nom, Email, Téléphone
 - **Étape 2 (shipping)** : Adresse de livraison
 - **Étape 3 (payment)** : Simulation de paiement CB + envoi des emails via EmailJS
 
+**Pourquoi c'est le fichier le plus important :**
+- C'est là que tout le flux de commande se concrétise
+- J'ai utilisé un système de `currentStep` (une variable qui stocke l'étape en cours) pour afficher le bon formulaire au bon moment
+- Chaque transition entre les étapes a une animation de slide (l'ancien formulaire part vers la gauche, le nouveau arrive depuis la droite)
+- Quand l'utilisateur clique sur "Payer", le `handleProcessPayment` s'exécute : il génère un numéro de commande, fabrique les emails HTML, et les envoie via EmailJS
+- Petit détail malin : **même si EmailJS plante**, la commande est confirmée. On ne bloque jamais le client à cause d'un problème technique d'email.
+
 ### `lib/CartContext.tsx` — Le Moteur du Panier
 Gère l'état global du panier avec `useReducer` (un pattern de gestion d'état avancé en React). Chaque action (ajouter, supprimer, vider...) est gérée par une fonction `cartReducer` qui retourne le nouvel état sans jamais modifier l'ancien (principe d'immutabilité).
 
 ### `lib/products.ts` — La Base de Données
-Contient les 20 produits du catalogue, les catégories, et les témoignages. C'est une base de données locale (un simple tableau TypeScript). Dans une vraie app en production, ça serait dans Supabase ou une autre BDD.
+Contient les 20 produits du catalogue, les catégories, et les témoignages. C'est une **base de données locale** (un simple tableau TypeScript). Dans une vraie app en production, ça serait dans Supabase ou une autre BDD.
+
+**Comment ça marche :**
+- J'ai défini une interface `Product` (le "contrat" que chaque produit doit respecter : id, name, price, category...)
+- Les produits sont stockés dans un tableau `products: Product[]` — 20 articles exactement
+- Les catégories (`categories`) et le mapping (`categoryIdMap`) sont séparés pour que le filtrage soit plus propre dans la page `/shop`
+- Les témoignages (`testimonials`) sont aussi là-dedans puisqu'ils font partie des données "métier"
+
+**Pourquoi pas une vraie base de données ?**
+Le but du projet était de montrer les fonctionnalités frontend (panier, checkout, emails). J'ajouterai une BDD plus tard.
 
 ### `lib/emailTemplates.ts` — Les Templates Email
 Deux fonctions qui génèrent du HTML complet pour les emails :
