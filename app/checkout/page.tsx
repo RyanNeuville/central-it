@@ -5,6 +5,8 @@ import { useCart } from '@/lib/CartContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Check, ChevronRight, Lock, CreditCard, User, MapPin, Truck, ArrowRight, ShieldCheck } from 'lucide-react';
 import Link from 'next/link';
+import emailjs from '@emailjs/browser';
+import { generateClientEmailHtml, generateAdminEmailHtml } from '@/lib/emailTemplates';
 
 type Step = 'info' | 'shipping' | 'payment' | 'confirmation';
 
@@ -48,16 +50,45 @@ export default function CheckoutPage() {
     { id: 'payment', label: 'Paiement', icon: CreditCard },
   ];
 
-  const handleProcessPayment = (e: React.FormEvent) => {
+  const handleProcessPayment = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsProcessing(true);
-    // Simulate API call for payment
-    setTimeout(() => {
-      setOrderNumber(`CMD-${Math.random().toString(36).substr(2, 9).toUpperCase()}`);
-      setIsProcessing(false);
+    
+    const newOrderNumber = `CMD-${Math.random().toString(36).substr(2, 9).toUpperCase()}`;
+    const clientHtml = generateClientEmailHtml(info, address, items, subtotal, shipping, tva, total, newOrderNumber);
+    const adminHtml = generateAdminEmailHtml(info, address, items, subtotal, shipping, tva, total, newOrderNumber);
+    
+    try {
+      const SERVICE_ID = 'service_0ksrbxk';
+      const TEMPLATE_ID = 'template_3wspinx';
+      const PUBLIC_KEY = '7Z6usR6NcmAl4vTt7';
+
+      // Envoi de l'email au client
+      await emailjs.send(SERVICE_ID, TEMPLATE_ID, { 
+        html_content: clientHtml, 
+        email: info.email,
+        order_id: newOrderNumber
+      }, PUBLIC_KEY);
+      
+      // Envoi de l'email à l'admin
+      await emailjs.send(SERVICE_ID, TEMPLATE_ID, { 
+        html_content: adminHtml, 
+        email: 'feukouoryan@icloud.com',
+        order_id: newOrderNumber
+      }, PUBLIC_KEY);
+
+      setOrderNumber(newOrderNumber);
       setCurrentStep('confirmation');
       clearCart();
-    }, 2000);
+    } catch (error) {
+      console.error("Erreur lors de l'envoi de l'email via EmailJS:", error);
+      // Même si l'email échoue, on confirme la commande pour ne pas bloquer l'utilisateur
+      setOrderNumber(newOrderNumber);
+      setCurrentStep('confirmation');
+      clearCart();
+    } finally {
+      setIsProcessing(false);
+    }
   };
 
   return (
@@ -105,9 +136,11 @@ export default function CheckoutPage() {
               </div>
             </div>
 
-            <Link href="/" className="px-8 py-3 bg-black text-white rounded-lg font-bold hover:bg-gray-900 transition-colors inline-block">
-              Retour à l'accueil
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
+              <Link href="/" className="px-8 py-3 bg-black text-white rounded-lg font-bold hover:bg-gray-900 transition-colors inline-block">
+                Retour à l&apos;accueil
+              </Link>
+            </div>
           </motion.div>
         ) : (
           <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">

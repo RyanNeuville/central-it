@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { Navbar } from '@/components/layout/Navbar';
-import { Footer } from '@/components/layout/Footer';
-import { useCart } from '@/lib/CartContext';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Minus, Plus, Trash2, ShoppingBag, ArrowRight } from 'lucide-react';
-import Link from 'next/link';
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
+import { useCart } from "@/lib/CartContext";
+import { motion, AnimatePresence } from "framer-motion";
+import { Minus, Plus, Trash2, ShoppingBag, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 export default function CartPage() {
   const { items, updateQuantity, removeItem, totalPrice } = useCart();
@@ -17,10 +17,28 @@ export default function CartPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
-      
+
       <div className="pt-32 md:pt-40 pb-20">
         <div className="container-premium">
-          <h1 className="heading-section mb-10">Votre Panier</h1>
+          <center>
+            <h1 className="relative mb-8">
+              <svg
+                width="219"
+                height="24"
+                viewBox="0 0 219 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="absolute inset-x-0 -bottom-6 w-full text-blue-500"
+              >
+                <path
+                  d="M0.5 2H218L21 12.5H182.5L48.5 21.5H151"
+                  stroke="currentColor"
+                  stroke-width="4"
+                ></path>
+              </svg>
+              <span className="relative heading-section">Votre Panier</span>
+            </h1>
+          </center>
 
           {items.length === 0 ? (
             <div className="bg-white rounded-2xl p-12 text-center shadow-sm border border-gray-100 flex flex-col items-center">
@@ -29,9 +47,10 @@ export default function CartPage() {
               </div>
               <h2 className="text-2xl font-bold mb-4">Votre panier est vide</h2>
               <p className="text-gray-500 mb-8 max-w-md">
-                Découvrez notre sélection de matériel informatique professionnel et trouvez l'équipement parfait pour vos besoins.
+                Découvrez notre sélection de matériel informatique professionnel
+                et trouvez l&apos;équipement parfait pour vos besoins.
               </p>
-              <Link 
+              <Link
                 href="/shop"
                 className="px-8 py-3 bg-black text-white rounded-lg font-semibold hover:bg-gray-900 transition-colors inline-block"
               >
@@ -48,12 +67,15 @@ export default function CartPage() {
                         <motion.div
                           layout
                           initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: 'auto' }}
+                          animate={{ opacity: 1, height: "auto" }}
                           exit={{ opacity: 0, height: 0 }}
                           key={item.product.id}
                           className="flex gap-4 sm:gap-6 pb-6 border-b border-gray-100 last:border-0 last:pb-0"
                         >
-                          <Link href={`/product/${item.product.id}`} className="shrink-0">
+                          <Link
+                            href={`/product/${item.product.id}`}
+                            className="shrink-0"
+                          >
                             <div className="w-24 h-24 sm:w-32 sm:h-32 bg-gray-50 rounded-lg overflow-hidden">
                               <img
                                 src={item.product.image}
@@ -71,7 +93,9 @@ export default function CartPage() {
                                     {item.product.name}
                                   </h3>
                                 </Link>
-                                <p className="text-sm text-gray-500 mt-1">{item.product.category}</p>
+                                <p className="text-sm text-gray-500 mt-1">
+                                  {item.product.category}
+                                </p>
                               </div>
                               <div className="font-bold whitespace-nowrap">
                                 {item.product.price} € HT
@@ -81,7 +105,12 @@ export default function CartPage() {
                             <div className="flex items-center justify-between mt-4">
                               <div className="flex items-center border border-gray-200 rounded-lg bg-white">
                                 <button
-                                  onClick={() => updateQuantity(item.product.id, item.quantity - 1)}
+                                  onClick={() =>
+                                    updateQuantity(
+                                      item.product.id,
+                                      item.quantity - 1,
+                                    )
+                                  }
                                   className="p-2 hover:bg-gray-50 text-gray-600 transition-colors"
                                 >
                                   <Minus size={16} />
@@ -90,7 +119,12 @@ export default function CartPage() {
                                   {item.quantity}
                                 </span>
                                 <button
-                                  onClick={() => updateQuantity(item.product.id, item.quantity + 1)}
+                                  onClick={() =>
+                                    updateQuantity(
+                                      item.product.id,
+                                      item.quantity + 1,
+                                    )
+                                  }
                                   className="p-2 hover:bg-gray-50 text-gray-600 transition-colors"
                                 >
                                   <Plus size={16} />
@@ -115,8 +149,10 @@ export default function CartPage() {
 
               <div className="w-full lg:w-[380px] shrink-0">
                 <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 sm:p-8 sticky top-28">
-                  <h3 className="text-lg font-bold mb-6">Résumé de la commande</h3>
-                  
+                  <h3 className="text-lg font-bold mb-6">
+                    Résumé de la commande
+                  </h3>
+
                   <div className="space-y-4 text-sm mb-6">
                     <div className="flex justify-between">
                       <span className="text-gray-500">Sous-total HT</span>
@@ -125,7 +161,11 @@ export default function CartPage() {
                     <div className="flex justify-between">
                       <span className="text-gray-500">Frais de livraison</span>
                       <span className="font-medium">
-                        {shipping === 0 ? <span className="text-green-600">Offert</span> : `${shipping} €`}
+                        {shipping === 0 ? (
+                          <span className="text-green-600">Offert</span>
+                        ) : (
+                          `${shipping} €`
+                        )}
                       </span>
                     </div>
                   </div>
@@ -135,7 +175,9 @@ export default function CartPage() {
                       <span className="font-bold text-lg">Total HT</span>
                       <span className="font-bold text-2xl">{total} €</span>
                     </div>
-                    <p className="text-xs text-gray-500 text-right">TVA calculée à l'étape suivante</p>
+                    <p className="text-xs text-gray-500 text-right">
+                      TVA calculée à&apos;étape suivante
+                    </p>
                   </div>
 
                   <Link
