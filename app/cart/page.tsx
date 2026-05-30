@@ -1,3 +1,24 @@
+/**
+ * app/cart/page.tsx — La Page Panier (Route : /cart)
+ * =====================================================
+ * Rédigé par Ryan Neuville
+ *
+ * Cette page affiche le contenu du panier avec les quantités modifiables.
+ * L'utilisateur peut :
+ *   - Voir tous ses articles avec image, nom, prix et quantité
+ *   - Augmenter/diminuer la quantité avec les boutons +/- (ou descendre à 0 pour supprimer)
+ *   - Supprimer un article individuellement avec l'icône poubelle
+ *   - Voir le récapitulatif : sous-total, frais de port, total
+ *   - Accéder au checkout (bouton "Passer la commande")
+ *
+ * États gérés :
+ *   - Panier vide → message + bouton "Explorer le catalogue"
+ *   - Commande > 200€ HT → frais de port OFFERTS (sinon 15€)
+ *
+ * POURQUOI 'use client' ?
+ * Toute l'interactivité (boutons, animations AnimatePresence, lecture du panier)
+ * nécessite le navigateur. Impossible de faire ça sur le serveur.
+ */
 "use client";
 
 import { Navbar } from "@/components/layout/Navbar";

@@ -1,10 +1,43 @@
+/**
+ * Footer.tsx — Le Pied de Page
+ * ==============================
+ * Rédigé par Ryan Neuville
+ *
+ * Le footer apparaît en bas de toutes les pages du site.
+ * Il contient :
+ *   - Une colonne de présentation de la marque Central IT
+ *   - Trois colonnes de liens organisés par thème (Catalogue, Entreprise, Support)
+ *   - Une bande inférieure avec les mentions légales et les liens réseaux sociaux
+ *
+ * Design : fond blanc, séparé du contenu principal par une bordure subtile.
+ * Toutes les sections apparaissent avec une animation fade-in au scroll
+ * grâce à Framer Motion (whileInView + viewport={{ once: true }}).
+ *
+ * POURQUOI 'use client' ?
+ * Même si le Footer n'a pas de vrai état interactif, l'utilisation de
+ * Framer Motion (whileInView) nécessite que le composant soit côté client
+ * car il doit observer le DOM pour détecter quand l'élément entre dans la vue.
+ */
 'use client';
 
 import Link from 'next/link';
 import { Instagram, Twitter, Facebook, Mail } from 'lucide-react';
 import { motion } from 'framer-motion';
 
+/**
+ * Footer — Composant Principal
+ * -----------------------------
+ * Les données (sections et liens) sont définies dans le composant lui-même
+ * sous forme de tableaux d'objets, ce qui rend les modifications faciles :
+ * il suffit d'éditer le tableau footerSections pour ajouter/changer un lien.
+ */
 export function Footer() {
+  /**
+   * footerSections — Les colonnes de liens du footer
+   * -------------------------------------------------
+   * Chaque section a un titre et une liste de liens.
+   * On boucle dessus pour générer les colonnes dynamiquement.
+   */
   const footerSections = [
     {
       title: 'Catalogue',
@@ -35,6 +68,13 @@ export function Footer() {
     },
   ];
 
+  /**
+   * socialLinks — Les icônes des réseaux sociaux
+   * ----------------------------------------------
+   * On stocke le composant icône directement dans l'objet (social.icon).
+   * Ensuite dans le JSX on l'instancie dynamiquement avec <social.icon />.
+   * C'est une technique React qui permet d'éviter un switch/case.
+   */
   const socialLinks = [
     { icon: Instagram, href: '#', label: 'Instagram' },
     { icon: Twitter, href: '#', label: 'Twitter' },
@@ -45,7 +85,11 @@ export function Footer() {
   return (
     <footer className="bg-white border-t border-gray-100 mt-24">
       <div className="container-premium py-16 md:py-24">
+
+        {/* Grille principale : logo + 3 colonnes de liens */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
+
+          {/* Colonne 1 : Présentation de la marque */}
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -57,6 +101,7 @@ export function Footer() {
             </p>
           </motion.div>
 
+          {/* Colonnes 2, 3, 4 : Liens par catégorie — générées dynamiquement */}
           {footerSections.map((section, idx) => (
             <motion.div
               key={section.title}
@@ -82,6 +127,7 @@ export function Footer() {
           ))}
         </div>
 
+        {/* Bande inférieure : mentions légales + icônes réseaux sociaux */}
         <div className="border-t border-gray-100 pt-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <motion.div
@@ -102,6 +148,7 @@ export function Footer() {
               </p>
             </motion.div>
 
+            {/* Icônes des réseaux sociaux */}
             <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}

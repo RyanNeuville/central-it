@@ -1,3 +1,23 @@
+/**
+ * products.ts — La Base de Données Locale ("le catalogue")
+ * ==========================================================
+ * Rédigé par Ryan Neuville
+ *
+ * Ce fichier est NOTRE "base de données". Pas de MySQL, pas de Supabase,
+ * juste un beau tableau TypeScript avec 20 produits soigneusement choisis.
+ *
+ * Dans une vraie app d'e-commerce, ces données viendraient d'une API.
+ * Mais pour ce projet (version démo), on les stocke ici directement.
+ * C'est plus simple pour le grand frère qui veut comprendre le code !
+ *
+ * Ce fichier exporte :
+ *   - Product       → L'interface TypeScript (le "contrat" que chaque produit suit)
+ *   - products      → Le tableau des 20 produits du catalogue
+ *   - categories    → Les catégories pour le filtre de la page /shop
+ *   - categoryIdMap → La correspondance entre ID de catégorie et nom
+ *   - testimonials  → Les avis clients affichés sur la page d'accueil
+ */
+
 export interface Product {
   id: string;
   name: string;
@@ -433,6 +453,15 @@ export const products: Product[] = [
   },
 ];
 
+/**
+ * categories — La Liste des Catégories pour les Filtres
+ * -------------------------------------------------------
+ * Utilisées par la page /shop pour afficher les boutons de filtre
+ * dans la barre latérale. Chaque catégorie a un id (court, technique)
+ * et un name (lisible, pour l'affichage).
+ *
+ * L'id "all" est spécial : il signifie "afficher tous les produits".
+ */
 export const categories = [
   { id: 'all', name: 'Tous les produits' },
   { id: 'souris', name: 'Souris' },
@@ -442,6 +471,17 @@ export const categories = [
   { id: 'ecrans', name: 'Écrans' },
 ];
 
+/**
+ * categoryIdMap — Correspondance entre ID et Nom de Catégorie
+ * ------------------------------------------------------------
+ * Dans la page /shop, on filtre les produits par catégorie.
+ * Les produits ont un champ "category" qui contient le nom lisible (ex: "Souris").
+ * Les filtres utilisent un id court (ex: "souris").
+ *
+ * Ce mapping permet de convertir l'ID du filtre en nom pour la comparaison :
+ *   categoryIdMap["souris"] → "Souris"
+ *   products[i].category    → "Souris"  → match !
+ */
 export const categoryIdMap: Record<string, string> = {
   'souris': 'Souris',
   'claviers': 'Claviers',
@@ -450,6 +490,14 @@ export const categoryIdMap: Record<string, string> = {
   'ecrans': 'Écrans',
 };
 
+/**
+ * testimonials — Les Avis Clients pour la Page d'Accueil
+ * -------------------------------------------------------
+ * Affichés dans la section "Approuvé par la Communauté" de la page d'accueil.
+ * Chaque témoignage a un auteur, un rôle, un contenu et un avatar (photo).
+ *
+ * Ce sont des faux avis (je les ai inventés), mais ils donnent du cachet au site.
+ */
 export const testimonials = [
   {
     id: '1',
