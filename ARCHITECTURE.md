@@ -1,140 +1,120 @@
-# NEXUS Architecture & Design System
+# Architecture Technique — Central IT
 
-## Project Structure Overview
+Comment le projet est construit, de A à Z.
 
-### `/app` - Next.js App Router
-- **Root Files**: `layout.tsx`, `page.tsx`, `globals.css`
-- **Nested Routes**: Organized by feature (shop, product, about, contact, support)
-- **Dynamic Routes**: Product details use `[id]` parameter
-- **Error Pages**: `not-found.tsx` for 404 handling
+---
 
-### `/components` - React Components
-- **Layout**: Navbar and Footer - persistent across all pages
-- **Sections**: Reusable page sections (Hero, ProductCard, FeaturedProducts, Newsletter, StatsSection)
-- **UI**: shadcn/ui components (imported as needed)
+## 1. Next.js App Router
 
-### `/lib` - Utilities & Data
-- `products.ts` - Product data, categories, testimonials
-- `schema.ts` - Structured data for SEO
-- `utils.ts` - Helper functions
-
-### `/public` - Static Assets
-- Favicon, robots.txt, sitemap configuration
-
-## Design System
-
-### Color Palette
-
-| Role | Color | Usage |
-|------|-------|-------|
-| Primary | #1A1A1A (Black) | Headers, CTAs, text hierarchy |
-| Background | #FAFAF9 (Off-white) | Page backgrounds |
-| Secondary | #8B8B8B (Gray) | Supporting text |
-| Accent | #000000 (Pure Black) | Emphasis |
-| Muted | #E8E8E8 (Light Gray) | Borders, dividers |
-
-### Typography Scale
+Le projet utilise le **App Router** de Next.js 13. Le principe : chaque dossier dans `app/` crée une route automatiquement.
 
 ```
-Display:   7xl (48px)  - Hero headlines
-Section:   5xl (48px)  - Section headings
-Card:      2xl (24px)  - Card titles
-Heading:   lg  (18px)  - Subheadings
-Body:      base(16px)  - Body text
-Small:     sm  (14px)  - Captions
+app/page.tsx              →  /
+app/shop/page.tsx         →  /shop
+app/product/[id]/page.tsx →  /product/souris-gaming-apex
+app/cart/page.tsx         →  /cart
+app/checkout/page.tsx     →  /checkout
 ```
 
-Font: Inter (400, 500, 600, 700 weights)
-Line Heights: 150% for body, 120% for headings
+Le fichier `app/layout.tsx` est le **root layout** : il enveloppe toutes les pages. C'est là que sont déclarées :
 
-### Spacing System (8px Grid)
+- Les métadonnées SEO (title, description, OpenGraph)
+- La police Inter (Google Fonts)
+- Le `CartProvider` qui rend le panier accessible partout
 
-```
-xs:  4px
-sm:  8px
-md:  16px
-lg:  24px
-xl:  32px
-2xl: 40px
-3xl: 48px
-4xl: 64px
-```
+---
 
-### Border Radius
+## 2. Architecture des Composants
 
 ```
-xs: 4px    - Subtle
-sm: 6px    - Inputs
-md: 8px    - Cards
-lg: 12px   - Buttons
-xl: 16px   - Large elements
+RootLayout (server component)
+  └── CartProvider (client — état global du panier)
+       └── Page spécifique (children)
+            ├── Navbar    ← lit totalItems depuis useCart()
+            ├── [Contenu de la page]
+            └── Footer
 ```
 
-### Shadow System
+- **Server Components** : `layout.tsx` — pas d'interactivité, rendu côté serveur
+- **Client Components** : pages avec `'use client'` — tout ce qui a des boutons, animations, et état local
+
+---
+
+## 3. Le Système de Panier (la pièce maîtresse)
+
+Fichier : `lib/CartContext.tsx`
+
+### Concept
+
+React ne permet pas à deux pages différentes de partager des données directement. Le **Context API** résout ça : c'est une mémoire globale accessible depuis n'importe quel composant.
 
 ```
-sm:      Light elevation
-md:      Standard cards
-lg:      Hover effects
-xl:      Prominent elements
-premium: Premium cards (20px, 40px blur)
+[CartProvider] ← dans layout.tsx
+     │
+     ├── Navbar        → lit totalItems (badge du panier)
+     ├── ProductPage   → appelle addItem()
+     ├── CartPage      → lit items, appelle updateQuantity(), removeItem()
+     └── CheckoutPage  → lit items + totalPrice, appelle clearCart()
 ```
 
-## Component Architecture
+### Architecture interne
 
-### Page Templates
+| Élément | Rôle |
+|---|---|
+| `CartContext` | Le "tableau blanc" — contient les données |
+| `CartProvider` | Le cadre qui entoure l'app et initialise tout |
+| `useCart()` | Le hook que les composants utilisent pour lire/écrire |
+| `cartReducer` | Fonction pure qui gère les modifications |
 
-Each page follows a consistent pattern:
-```tsx
-export default function PageName() {
-  return (
-    <div className="min-h-screen bg-white">
-      <Navbar />
-      {/* Page-specific content */}
-      <Footer />
-    </div>
-  );
-}
+### Les actions possibles
+
+| Action | Déclencheur |
+|---|---|
+| `ADD_ITEM` | Clic sur "Ajouter au panier" |
+| `REMOVE_ITEM` | Clic sur la poubelle |
+| `UPDATE_QUANTITY` | Clic sur +/- |
+| `CLEAR_CART` | Après confirmation de commande |
+| `LOAD_CART` | Au démarrage (restaure depuis localStorage) |
+
+### Persistance
+
+Le panier est sauvegardé dans **localStorage** à chaque modification. Au chargement de l'application, on restaure les données. Ainsi, le panier survit à une fermeture d'onglet.
+
+---
+
+## 4. Le Flux de Paiement (checkout)
+
+Fichier : `app/checkout/page.tsx`
+
+### Les 4 étapes
+
+```
+info ──► shipping ──► payment ──► confirmation
 ```
 
-### Product Card Component
+Chaque étape est un formulaire différent. On utilise une variable `currentStep` pour savoir quoi afficher. Les transitions sont animées avec Framer Motion (`AnimatePresence`).
 
-- Responsive image with hover effects
-- Rating and review count display
-- Wishlist toggle with visual feedback
-- Price and quick-add button
-- Badge support for promotions
+### L'envoi d'emails (EmailJS)
 
-### Section Components
+À l'étape "payment", quand l'utilisateur clique sur "Payer" :
 
-- `Hero`: Full-screen background with overlay, CTA buttons
-- `FeaturedProducts`: Grid with animated product cards
-- `Newsletter`: Email subscription with validation
-- `StatsSection`: Statistics showcase with counters
+1. On génère un numéro de commande : `CMD-${random}`
+2. `generateClientEmailHtml()` crée le HTML de l'email client (beau, avec récap)
+3. `generateAdminEmailHtml()` crée le HTML de l'email admin (infos complètes)
+4. `emailjs.send()` est appelé **deux fois** :
+   - Vers l'email du client (confirmation d'achat)
+   - Vers feukouoryan@icloud.com (notification admin)
+5. La commande est confirmée, le panier est vidé
 
-## Animation Strategy
+**Règle importante** : même si EmailJS échoue, la commande est confirmée. On ne bloque jamais le client pour un problème technique.
 
-### Framer Motion Usage
+---
 
-**Entrance Animations:**
-- `initial={{ opacity: 0, y: 20 }}` - Fade in from below
-- `whileInView={{ opacity: 1, y: 0 }}` - Trigger on viewport
-- `viewport={{ once: true }}` - Only animate once
+## 5. Les Données
 
-**Interaction Animations:**
-- `whileHover={{ scale: 1.05 }}` - Subtle scale on hover
-- `whileTap={{ scale: 0.95 }}` - Press feedback
-- Staggered delays for list items
+### `lib/products.ts` — La base de données locale
 
-**Key Principles:**
-- Duration: 0.3s - 0.8s (fast but not jarring)
-- Easing: Default ease-out for natural feel
-- No animation lasts longer than 1 second
-- Animations enhance, never distract
-
-## Data Management
-
-### Product Data (`lib/products.ts`)
+Au lieu d'une vraie BDD (PostgreSQL, Supabase…), les produits sont stockés dans un tableau TypeScript.
 
 ```typescript
 interface Product {
@@ -154,155 +134,75 @@ interface Product {
 }
 ```
 
-- 12 products across 8 categories
-- Real images from Pexels
-- Realistic pricing and ratings
-- Detailed specifications
+- **20 produits** dans 5 catégories (Souris, Claviers, Audio, Tablettes, Écrans)
+- Les catégories (`categories`) et le mapping (`categoryIdMap`) sont séparés pour le filtrage
+- Les témoignages (`testimonials`) sont aussi stockés ici
 
-### State Management
+### `lib/emailTemplates.ts` — Les templates HTML
 
-- React hooks for local component state
-- No global state manager needed (data-driven)
-- Form state with React Hook Form
-- Wishlist state maintained per session
+Deux fonctions qui génèrent du HTML inline (nécessaire pour les clients email) :
 
-## Responsive Breakpoints
-
-```
-Mobile:   < 640px  - 1 column, full-width
-Tablet:   640px+   - 2 columns, adjusted spacing
-Desktop:  1024px+  - 3+ columns, expanded layout
-Large:    1280px+  - Full featured layout
-```
-
-### Responsive Considerations
-
-- Touch-friendly tap targets (min 44x44px)
-- Mobile-first CSS approach
-- Collapsible navigation on mobile
-- Stacked forms on mobile
-- Images optimized per viewport
-
-## Accessibility Features
-
-- Semantic HTML structure
-- ARIA labels on buttons and icons
-- Color contrast ratios > 4.5:1
-- Keyboard navigation support
-- Focus states visible on all interactive elements
-- Form labels properly associated with inputs
-
-## Performance Optimizations
-
-### Image Optimization
-
-- External images from Pexels (CDN-served)
-- No local images for faster builds
-- Alt text on all images
-- Lazy loading via viewport detection
-
-### Code Splitting
-
-- Dynamic imports for heavy components
-- Route-based code splitting (automatic with Next.js)
-- Tree-shaking of unused utilities
-
-### Bundle Size
-
-- TailwindCSS: ~60KB (with purging)
-- Framer Motion: ~40KB
-- React + React DOM: ~40KB
-- Other libraries: ~20KB
-- **Total**: ~160KB gzipped
-
-## SEO Strategy
-
-- Meta tags in layout.tsx
-- Structured data (schema.org)
-- Semantic HTML
-- Mobile-responsive design
-- Fast page load times
-- Accessible navigation
-
-## Security Considerations
-
-- No sensitive data in frontend
-- Form validation on client and server (future)
-- Content Security Policy (optional)
-- HTTPS enforcement (production)
-- No hardcoded credentials
-
-## Future Enhancements
-
-### E-commerce Features
-- Shopping cart state management
-- Checkout process
-- Payment integration
-- Order history
-
-### User Features
-- Authentication system
-- User profiles
-- Saved addresses
-- Order tracking
-
-### Admin Features
-- Product management
-- Inventory tracking
-- Order management
-- Analytics dashboard
-
-### Performance
-- Service Worker for PWA
-- Offline support
-- Advanced image optimization
-- API caching strategies
-
-## Deployment
-
-### Recommended Platforms
-- Vercel (Native Next.js support)
-- Netlify (Next.js support)
-- Self-hosted on Node.js
-
-### Environment Variables
-- `NEXT_PUBLIC_SITE_URL` - Base URL for OG tags
-- Optional: Analytics, CDN, API URLs
-
-### Build Process
-```bash
-npm install
-npm run build
-npm start
-```
-
-## Code Quality Standards
-
-### TypeScript
-- Strict mode enabled
-- No `any` types without justification
-- Proper interface definitions
-
-### Naming Conventions
-- Components: PascalCase (ProductCard)
-- Functions: camelCase (getProductList)
-- Constants: UPPER_SNAKE_CASE (API_KEY)
-- CSS Classes: kebab-case (product-card)
-
-### File Organization
-- One component per file
-- Related utilities grouped together
-- Clear import paths using @ alias
-- Consistent file structure
-
-## Documentation
-
-- README.md: Project overview
-- ARCHITECTURE.md: This file
-- Inline code comments: For complex logic only
-- Component props: TypeScript interfaces for self-documentation
+- `generateClientEmailHtml()` → Email client (merci, récap, adresse)
+- `generateAdminEmailHtml()` → Email admin (alerte, détails, revenu)
 
 ---
 
-**Last Updated**: 2025
-**Status**: Production Ready
+## 6. Design System
+
+### Classes Tailwind personnalisées (dans `tailwind.config.ts`)
+
+| Classe | Usage |
+|---|---|
+| `container-premium` | Conteneur centré (max-w-7xl) avec padding responsive |
+| `heading-section` | Titres de section (bold, taille responsive) |
+| `bg-gradient-subtle` | Fond avec dégradé léger |
+
+### Palette
+
+- Texte principal : noir (`#000000`)
+- Texte secondaire : gray-600 (`#4B5563`)
+- Accent : blue-600 (`#2563EB`)
+- Fond : blanc (`#FFFFFF`) et gray-50 (`#F9FAFB`)
+
+### Animations (Framer Motion)
+
+Pattern utilisé partout :
+```tsx
+<motion.div
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+>
+```
+
+- `initial` → état de départ (invisible, plus bas)
+- `whileInView` → état final quand l'élément entre dans l'écran
+- `viewport={{ once: true }}` → ne s'anime qu'une seule fois
+
+---
+
+## 7. Diagramme de Flux Complet
+
+```
+Utilisateur
+  │
+  ├── /shop
+  │     └── Filtre par catégorie + tri
+  │
+  ├── /product/[id]
+  │     └── Ajoute au panier → dispatch ADD_ITEM → localStorage
+  │
+  ├── /cart
+  │     ├── Modifie quantités → dispatch UPDATE_QUANTITY
+  │     ├── Supprime article → dispatch REMOVE_ITEM
+  │     └── "Passer la commande" → /checkout
+  │
+  └── /checkout
+        ├── Étape 1 : Infos personnelles
+        ├── Étape 2 : Adresse de livraison
+        └── Étape 3 : Paiement
+              ├── Génère HTML emails
+              ├── emailjs.send(client)
+              ├── emailjs.send(admin)
+              └── dispatch CLEAR_CART → localStorage
+```
